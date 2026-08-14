@@ -1,0 +1,67 @@
+// ============================================
+// Mat Timepicker Override (Material 3)
+// ============================================
+
+.time-field {
+  width: 115px;
+
+  // Usunięcie tła i podkreślenia
+  --mat-form-field-filled-container-color: transparent;
+  --mdc-filled-text-field-active-indicator-height: 0;
+  --mdc-filled-text-field-focus-active-indicator-height: 0;
+  --mdc-filled-text-field-hover-active-indicator-height: 0;
+
+  // Wysokość: 14 (top) + ~20 (content) + 8 (bottom) = 42px
+  --mat-form-field-container-height: 42px;
+  --mat-form-field-container-vertical-padding: 11px;
+  --mat-form-field-filled-with-label-container-padding-top: 14px;
+  --mat-form-field-filled-with-label-container-padding-bottom: 8px;
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+}
+
+// Border
+.time-field:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  border: 1px solid var(--color-primary-300) !important;
+  border-radius: 8px !important;
+  background-color: transparent !important;
+}
+
+// Usunięcie podkreślenia (line ripple)
+.time-field .mdc-line-ripple {
+  display: none !important;
+}
+
+// Usunięcie focus overlay
+.time-field .mat-mdc-form-field-focus-overlay {
+  display: none !important;
+}
+
+// Hover
+.time-field:not(.mat-form-field-disabled):hover .mat-mdc-text-field-wrapper {
+  border-color: var(--color-primary-500) !important;
+}
+
+// Focus
+.time-field.mat-focused:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  border-color: var(--color-primary-500) !important;
+  border-width: 2px !important;
+}
+
+// ============================================
+// Dark Mode
+// ============================================
+
+.dark .time-field:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  border-color: var(--color-primary-600) !important;
+}
+
+.dark .time-field:not(.mat-form-field-disabled):hover .mat-mdc-text-field-wrapper {
+  border-color: var(--color-primary-400) !important;
+}
+
+.dark .time-field.mat-focused:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  border-color: var(--color-primary-400) !important;
+}

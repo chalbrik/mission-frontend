@@ -1,0 +1,53 @@
+.compact-toggle.mat-mdc-slide-toggle {
+  --mdc-switch-track-height: 16px;
+  --mdc-switch-track-width: 32px;
+  --mdc-switch-handle-height: 12px;
+  --mdc-switch-handle-width: 12px;
+  --mdc-switch-state-layer-size: 28px;
+
+  .mdc-switch {
+    width: 32px !important;
+    height: 16px !important;
+  }
+
+  .mdc-switch__track {
+    height: 16px !important;
+    width: 32px !important;
+    border-radius: 8px !important;
+  }
+
+  .mdc-switch__handle-track {
+    width: 16px !important;
+    left: 2px !important;
+  }
+
+  .mdc-switch__handle {
+    width: 12px !important;
+    height: 12px !important;
+    left: 0 !important;
+  }
+
+  .mdc-switch__icons {
+    display: none !important;
+  }
+
+  .mdc-switch__ripple {
+    display: none;
+  }
+
+  .mdc-switch--selected .mdc-switch__track::after {
+    background: var(--color-secondary-400) !important;
+  }
+
+  .mdc-switch--selected:hover .mdc-switch__track::after {
+    background: var(--color-secondary-500) !important;
+  }
+
+  .mdc-switch--selected .mdc-switch__handle::after {
+    background: var(--color-secondary-100) !important;
+  }
+
+  .mdc-switch--selected:hover .mdc-switch__handle::after {
+    background: var(--color-secondary-200) !important;
+  }
+}

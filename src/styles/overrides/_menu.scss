@@ -1,0 +1,24 @@
+// ============================================
+// Mat Menu Override (Material 3)
+// ============================================
+
+.mat-mdc-menu-panel {
+  // Tło, zaokrąglenie, cień
+  --mat-menu-container-color:
+    var(--color-surface-background-subtle);
+  --mat-menu-container-shape: 12px;
+  --mat-menu-container-elevation-shadow: none;
+  margin-top: 4px;
+
+  // Bez cienia panel zlewa się z tłem — border jak w _select
+  border: 1px solid var(--color-border-default) !important;
+}
+
+// ============================================
+// Dark Mode
+// ============================================
+
+.dark .mat-mdc-menu-panel {
+  border-color: var(--color-primary-600) !important;
+}
+

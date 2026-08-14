@@ -1,0 +1,71 @@
+// ============================================
+// Mat Table Override (Material 3)
+// ============================================
+
+// Tabela - tło i tekst
+.mat-mdc-table {
+  background-color: var(--color-surface-background-default) !important;
+
+  .mat-mdc-header-cell {
+    background-color: var(--color-surface-background-default) !important;
+    color: var(--color-text-default) !important;
+    border-bottom: 1px solid var(--color-border-default) !important;
+  }
+
+  .mat-mdc-cell {
+    background-color: var(--color-surface-background-default) !important;
+    color: var(--color-text-default) !important;
+    border-bottom: 1px solid var(--color-border-default) !important;
+  }
+
+  .mat-mdc-footer-cell {
+    background-color: var(--color-surface-background-default) !important;
+    color: var(--color-text-default) !important;
+  }
+
+  .mat-mdc-row,
+  .mat-mdc-header-row,
+  .mat-mdc-footer-row {
+    background-color: var(--color-surface-background-default) !important;
+  }
+
+  .mat-mdc-no-data-row {
+    background-color: var(--color-surface-background-default) !important;
+  }
+}
+
+// Paginator
+.mat-mdc-paginator {
+  background-color: var(--color-surface-background-default) !important;
+  color: var(--color-text-default) !important;
+
+  .mat-mdc-paginator-icon {
+    fill: var(--color-icon-default) !important;
+  }
+
+  .mat-mdc-select-value {
+    color: var(--color-text-default) !important;
+  }
+}
+
+// Sidenav
+.mat-sidenav {
+  background-color: var(--color-surface-background-default) !important;
+}
+
+// ============================================
+// Dark Mode
+// ============================================
+// Tabela, paginator i sidenav jadą na tokenach semantycznych
+// (surface-background-*, text-*, icon-*, border-*), które same przełączają
+// się pod .dark — nie trzeba ich tu powtarzać.
+
+.dark {
+  // Główny separator między wierszami (pracownikami) — lekko jaśniejszy
+  // niż globalny border-default (neutral-700), żeby był czytelniejszy na
+  // ciemnym tle. Subtelny separator wewnątrz grupy (has-expanded-subrows)
+  // ma wyższą specyficzność, więc pozostaje delikatniejszy.
+  .mat-mdc-table .mat-mdc-cell {
+    border-bottom-color: var(--color-neutral-600) !important;
+  }
+}

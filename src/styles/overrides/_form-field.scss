@@ -1,0 +1,103 @@
+// ============================================
+// Wspólny kompaktowy rozmiar pól form-field
+// (select + input + timepicker)
+// ============================================
+.mat-mdc-form-field-type-mat-select,
+.mat-mdc-form-field-type-mat-input,
+.time-field {
+  // Wysokość (kompaktowo). Zależność do utrzymania:
+  //   bez labela:  2 × vertical-padding + tekst(20) = height
+  //   z labelem:   padding-top + tekst(20) + padding-bottom = height
+  --mat-form-field-container-height: 36px;
+  --mat-form-field-container-vertical-padding: 8px;
+  // label nie unosi się (chowamy go) → symetrycznie, wartość wyśrodkowana
+  --mat-form-field-filled-with-label-container-padding-top: 8px;
+  --mat-form-field-filled-with-label-container-padding-bottom: 8px;
+
+  // Rozmiar tekstu = text-p-base z design-systemu
+  --mat-form-field-container-text-size: var(--text-p-base);                 // 14px
+  --mat-form-field-container-text-line-height: var(--text-p-base--line-height); // 20px
+}
+
+// Tekst wartości w samym select (osobny token niż form-field)
+.mat-mdc-form-field-type-mat-select {
+  --mat-select-trigger-text-size: var(--text-p-base);
+  --mat-select-trigger-text-line-height: var(--text-p-base--line-height);
+  --mat-select-arrow-transform: translateY(0); // dostroić wizualnie do 36px
+}
+
+// --- Border / radius / tło (wspólne) ---
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled)
+.mat-mdc-text-field-wrapper,
+.mat-mdc-form-field-type-mat-input:not(.search-bar):not(.mat-form-field-disabled)
+.mat-mdc-text-field-wrapper {
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 12px !important;
+  background-color: transparent !important;
+}
+
+// --- Ukrycie line-ripple + focus-overlay ---
+.mat-mdc-form-field-type-mat-select .mdc-line-ripple,
+.mat-mdc-form-field-type-mat-input:not(.search-bar) .mdc-line-ripple,
+.mat-mdc-form-field-type-mat-select .mat-mdc-form-field-focus-overlay,
+.mat-mdc-form-field-type-mat-input:not(.search-bar)
+.mat-mdc-form-field-focus-overlay {
+  display: none !important;
+}
+
+// --- Hover ---
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled):hover
+.mat-mdc-text-field-wrapper,
+.mat-mdc-form-field-type-mat-input:not(.search-bar):not(.mat-form-field-disabled)
+:hover .mat-mdc-text-field-wrapper {
+  border-color: var(--color-border-selected) !important;
+}
+
+// --- Focus (1px, bez skoku layoutu) ---
+.mat-mdc-form-field-type-mat-select.mat-focused:not(.mat-form-field-disabled)
+.mat-mdc-text-field-wrapper,
+.mat-mdc-form-field-type-mat-input.mat-focused:not(.search-bar):not(.mat-form-fie
+   ld-disabled) .mat-mdc-text-field-wrapper {
+  border-color: var(--color-border-selected) !important;
+  border-width: 1px !important;
+}
+
+// --- Error (input) ---
+.mat-mdc-form-field-type-mat-input.mat-form-field-invalid:not(.search-bar):not(.m
+   at-form-field-disabled) .mat-mdc-text-field-wrapper {
+  border-color: var(--color-border-danger) !important;
+  border-width: 2px !important;
+}
+.mat-mdc-form-field-type-mat-input:not(.search-bar) {
+  --mat-form-field-error-text-color: var(--color-text-error);
+  --mat-form-field-filled-error-label-text-color: var(--color-text-error);
+  --mat-form-field-filled-error-focus-label-text-color: var(--color-text-error);
+  --mat-form-field-filled-error-hover-label-text-color: var(--color-text-error);
+  --mat-form-field-error-focus-trailing-icon-color: var(--color-icon-danger);
+  --mdc-filled-text-field-error-caret-color: var(--color-text-error);
+  --mdc-filled-text-field-error-focus-caret-color: var(--color-text-error);
+}
+.mat-mdc-form-field-type-mat-input.mat-form-field-invalid:not(.search-bar):not(.m
+   at-form-field-disabled) {
+  .mat-mdc-form-field-icon-suffix, .mat-mdc-form-field-icon-prefix, .mat-icon {
+    color: var(--color-icon-danger) !important;
+  }
+}
+
+// --- Label jak placeholder: bez animacji, znika po fokusie/wypełnieniu ---
+.mat-mdc-form-field-type-mat-select .mdc-floating-label,
+.mat-mdc-form-field-type-mat-input:not(.search-bar) .mdc-floating-label {
+  transition: none !important;          // brak animacji unoszenia
+}
+.mat-mdc-form-field-type-mat-select .mdc-floating-label--float-above,
+.mat-mdc-form-field-type-mat-input:not(.search-bar) .mdc-floating-label--float-above {
+  opacity: 0 !important;                // zamiast unosić się — znika
+}
+
+// --- Icon-button w sufiksie nie rozpycha kompaktowego pola (36px) ---
+.mat-mdc-form-field-type-mat-input:not(.search-bar) .mat-mdc-icon-button {
+  --mdc-icon-button-state-layer-size: 32px;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+}

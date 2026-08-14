@@ -1,0 +1,32 @@
+<div class="w-72 border border-neutral-300 p-4 rounded-xl">
+  <div class="w-full flex flex-row justify-between items-center">
+    <div class="w-full flex flex-row gap-2">
+      <div [class]="'h-4 w-4 bg-red-500 rounded-full'"></div>
+      <div>{{ title() }}</div>
+    </div>
+
+
+    <app-buttons
+      [type]="'outline'"
+      [iconLeft]="LucideEllipsisVertical"
+      [textColor]="'neutral-300'"
+      [size]="'small'"
+      [rounded]="'big'"
+    />
+
+
+  </div>
+
+  <div class="flex flex-row items-center">
+    <p>{{ description() }}</p>
+
+    <div class="w-14 h-8 border border-neutral-300 rounded-full flex items-center justify-center">
+      <p>33</p>
+    </div>
+
+  </div>
+
+</div>
+<!--    <app-buttons type="filled" label="Usuń" bgColor="red-500" hoverBgColor="red-600" />-->
+<!--    <app-buttons type="outline" label="Anuluj" borderColor="neutral-300" textColor="neutral-600" />-->
+<!--    <app-buttons type="filled" label="Custom" bgColor="#16a34a" />-->

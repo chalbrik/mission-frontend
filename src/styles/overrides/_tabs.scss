@@ -1,0 +1,188 @@
+// ============================================
+// Outline Button
+// ============================================
+
+.mat-mdc-outlined-button.tab-btn  {
+  border-radius: var(--btn-radius, 8px) !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: var(--tab-p, 10px 10px)  !important;
+
+  // Light mode (dark leci automatycznie z tokenów)
+  background-color: var(--btn-bg, transparent)  !important;
+  border: none !important;
+  //border-color: var(--color-border-default) !important;
+  color: var(--color-text-default) !important;
+
+  // Disabled
+  &:disabled {
+    //border-color: var(--color-border-subtle) !important;
+    color: var(--color-text-subtle) !important;
+    background-color: transparent !important;
+  }
+
+  .mat-mdc-button-persistent-ripple::before {
+    opacity: 0 !important;
+  }
+
+  .mdc-button__label {
+    width: 100% !important;
+  }
+
+
+}
+
+
+
+//// ============================================
+//// Mat Tabs Override (Material 3)
+//// ============================================
+//
+//// ============================================
+//// Shared — reset indicator, divider & ripple
+//// ============================================
+//
+//.mat-mdc-tab-group {
+//  width: fit-content;
+//
+//  // Kill the bottom divider line (lives on .mat-mdc-tab-label-container)
+//  --mat-tab-divider-height: 0 !important;
+//  --mat-tab-divider-color: transparent !important;
+//
+//  // Kill the active indicator underline
+//  --mdc-tab-indicator-active-indicator-color: transparent !important;
+//  --mat-tab-header-active-indicator-color: transparent !important;
+//  --mdc-tab-indicator-active-indicator-height: 0 !important;
+//}
+//
+//.mat-mdc-tab-labels {
+//  border: none !important;
+//  box-shadow: none !important;
+//}
+//
+//.mat-mdc-tab-header {
+//  border: none !important;
+//}
+//
+//.mat-mdc-tab-indicator,
+//.mdc-tab-indicator,
+//.mdc-tab-indicator__content,
+//.mdc-tab-indicator__content--underline,
+//.mdc-tab__ripple {
+//  display: none !important;
+//  height: 0 !important;
+//  border: none !important;
+//  background: transparent !important;
+//  opacity: 0 !important;
+//}
+//
+//// ============================================
+//// Primary tabs — Grafik | Oddelegowane
+//// ============================================
+//
+//.primary-tabs {
+//  width: 100% !important;
+//}
+//
+//.primary-tabs .mat-mdc-tab-labels {
+//  display: flex !important;
+//  width: 100% !important;
+//  gap: 0.5rem !important;
+//}
+//
+//.primary-tabs .mat-mdc-tab {
+//  flex: 1 1 0 !important;
+//  min-width: 0 !important;
+//  --mdc-tab-indicator-active-indicator-height: 0 !important;
+//  --mdc-secondary-navigation-tab-container-height: 48px;
+//
+//  // Text colors (Material 3 variable names)
+//  --mat-tab-inactive-label-text-color: var(--color-text-disabled) !important;
+//  --mat-tab-active-label-text-color: var(--color-text-default) !important;
+//
+//  // No ripple
+//  --mat-tab-header-inactive-ripple-color: transparent;
+//  --mat-tab-header-active-ripple-color: transparent;
+//
+//  .mat-ripple, .mat-mdc-tab-ripple {
+//    display: none !important;
+//  }
+//
+//  border: 2px solid var(--color-border-default) !important;
+//  border-radius: 8px !important;
+//}
+//
+//.primary-tabs .mat-mdc-tab.mdc-tab--active {
+//  background-color: var(--color-surface-background-default) !important;
+//  --mat-tab-active-label-text-color: var(--color-surface-background-subtle) !important;
+//  border: 1px solid var(--color-border-default) !important;
+//  font-weight: 500;
+//}
+//
+//// ============================================
+//// Sub tabs — Wszyscy pracownicy | Podział na umowę
+//// ============================================
+//
+//// Wrapper border around all sub tabs
+//.sub-tabs .mat-mdc-tab-labels {
+//  border: 1px solid white !important;
+//  border-radius: 8px !important;
+//}
+//
+//.sub-tabs .mat-mdc-tab {
+//  min-width: auto !important;
+//  height: fit-content !important;
+//  padding: 10px 12px !important;
+//  font-size: 12px !important;
+//  --mdc-tab-indicator-active-indicator-height: 0 !important;
+//  --mdc-secondary-navigation-tab-container-height: auto;
+//
+//  // Text colors (Material 3 variable names)
+//  --mat-tab-inactive-label-text-color: var(--color-text-disabled) !important;
+//  --mat-tab-active-label-text-color: var(--color-text-default) !important;
+//
+//  // No ripple
+//  --mat-tab-header-inactive-ripple-color: transparent;
+//  --mat-tab-header-active-ripple-color: transparent;
+//
+//  .mat-ripple, .mat-mdc-tab-ripple {
+//    display: none !important;
+//  }
+//
+//  // Pill-style rounded
+//  //border: 1px solid var(--color-primary-200) !important;
+//  border: none !important;
+//  border-radius: 8px !important;
+//}
+//
+//.sub-tabs .mat-mdc-tab.mdc-tab--active {
+//  background-color: white !important;
+//  --mat-tab-active-label-text-color: var(--color-text-default) !important;
+//  border-color: white !important;
+//  font-weight: 600;
+//}
+//
+//// ============================================
+//// Dark Mode
+//// ============================================
+//
+//.dark {
+//  // primary-tabs: kolory tekstu i obramowania są w light semantyczne
+//  // (text-disabled/default, border-default) — przełączają się same, więc
+//  // osobny override dark nie jest potrzebny.
+//
+//  // sub-tabs: tekst (nieaktywny/aktywny) jest w light semantyczny → auto-switch.
+//  // Tu zostają tylko miejsca, gdzie light używa surowego `white`: obramowanie
+//  // wrappera i tło aktywnej zakładki. Neutralne odpowiedniki dla ciemnego tła —
+//  // aktywna zakładka (neutral-700) jest jaśniejsza niż tło karty (neutral-900),
+//  // więc wyraźnie się wybija.
+//  .sub-tabs .mat-mdc-tab-labels {
+//    border-color: var(--color-border-subtle) !important;
+//  }
+//
+//  .sub-tabs .mat-mdc-tab.mdc-tab--active {
+//    background-color: var(--color-surface-background-default) !important;
+//    border-color: var(--color-border-default) !important;
+//  }
+//}

@@ -1,0 +1,333 @@
+// ============================================
+// Filled Button
+// ============================================
+
+.mat-mdc-unelevated-button.buttons-btn  {
+  border-radius: var(--btn-radius, 8px) !important;
+  border: 1px solid var(--btn-border, transparent) !important;   // równe „pudełko" jak outlined (border-box + auto-height)
+  height: auto !important;
+  min-height: 0 !important;       // zdejmij narzucone 40px
+  min-width: 0 !important;
+  padding: var(--btn-p)  !important;  // teraz góra/dół realnie urośnie
+
+  // Light mode
+  background-color: var(--btn-bg)  !important;
+  color: var(--btn-text, var(--color-text-on-action)) !important;
+
+  // Płynne uniesienie + cień (działa też przy zjeżdżaniu kursora)
+  transition: transform 150ms ease, box-shadow 150ms ease !important;
+
+  &:hover:not(:disabled):not(.btn-no-hover) {
+    background-color: var(--btn-bg-hover, var(--btn-bg)) !important;
+    transform: translateY(-6px) !important;
+    box-shadow: 0 6px 0
+    color-mix(in srgb, var(--color-surface-shadow) 100%, transparent) !important;
+  }
+
+  &:disabled {
+    background-color: var(--color-surface-background-inactive) !important;
+    color: var(--color-text-disabled) !important;
+  }
+
+  // Wyłącz nakładkę state-layer, żeby amber NIE ciemniał na hover/focus
+  .mat-mdc-button-persistent-ripple::before {
+    opacity: 0 !important;
+  }
+}
+
+// ============================================
+// Outline Button
+// ============================================
+
+.mat-mdc-outlined-button.buttons-btn  {
+  border-radius: var(--btn-radius, 8px) !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: var(--btn-p) !important;
+
+  // Light mode (dark leci automatycznie z tokenów)
+  background-color: var(--btn-bg, transparent)  !important;
+  border-color: var(--btn-border, var(--color-border-default)) !important;
+  color: var(--btn-text, var(--color-text-default)) !important;
+
+  // Disabled
+  &:disabled {
+    border-color: var(--color-border-subtle) !important;
+    color: var(--color-text-subtle) !important;
+    background-color: transparent !important;
+  }
+
+  .mat-mdc-button-persistent-ripple::before {
+     opacity: 0 !important;
+   }
+}
+
+//.mat-mdc-outlined-button {
+//  // Border radius
+//  border-radius: 8px !important;
+//
+//  // Kolor obramowania
+//  border-color: var(--color-border-default) !important;
+//
+//  // Kolor tekstu
+//  color: var(--color-text-default) !important;
+//
+//  // Hover state
+//  &:hover {
+//    border-color: var(--color-border-default) !important;
+//    color: var(--color-text-default) !important;
+//    background-color: var(--color-surface-background-brand-hover) !important;
+//  }
+//
+//  // Disabled state
+//  &:disabled {
+//    border-color: var(--color-border-subtle)  !important;
+//    color: var(--color-text-subtle) !important;
+//    background-color: transparent !important;
+//  }
+//}
+//
+//.mat-mdc-outlined-button.table-view {
+//
+//  // Border radius
+//  border-radius: 8px 8px 0 0 !important;
+//
+//  border: 1px solid var(--color-border-default) !important;
+//  border-bottom: none !important;
+//
+//  // Kolor tekstu
+//  color: var(--color-text-default) !important;
+//
+//  // Hover state
+//  &:hover {
+//    border-color: var(--color-border-default) !important;
+//    color: var(--color-text-default) !important;
+//    background-color: var(--color-surface-background-brand-hover) !important;
+//  }
+//
+//  // Disabled state
+//  &:disabled {
+//    border-color: var(--color-border-subtle) !important;
+//    color: var(--color-text-subtle) !important;
+//    background-color: transparent !important;
+//  }
+//}
+//
+//
+//
+//.dark .mat-mdc-outlined-button {
+//  border-color: var(--color-primary-300) !important;
+//  color: var(--color-primary-300) !important;
+//
+//  &:hover {
+//    border-color: var(--color-primary-100) !important;
+//    color: var(--color-primary-100) !important;
+//    background-color: var(--color-primary-800) !important;
+//  }
+//
+//  &:disabled {
+//    border-color: var(--color-primary-700) !important;
+//    color: var(--color-primary-600) !important;
+//    background-color: transparent !important;
+//  }
+//}
+//
+//
+//// ============================================
+//// Filled Button
+//// ============================================
+//
+//.mat-mdc-unelevated-button {
+//  border-radius: 8px !important;
+//
+//  // Light mode
+//  background-color: var(--color-surface-background-brand) !important;
+//  color: var(--color-text-on-action) !important;
+//
+//  &:hover {
+//    background-color: var(--color-surface-background-brand-hover) !important;
+//  }
+//
+//  &:disabled {
+//    background-color: var(--color-surface-background-inactive) !important;
+//    color: var(--color-text-disabled) !important;
+//  }
+//}
+//
+//.mat-mdc-unelevated-button.table-view {
+//  border-radius: 8px 8px 0 0 !important;
+//
+//  border: 1px solid var(--color-border-subtle) !important;
+//  border-bottom: none !important;
+//
+//  // Light mode
+//  background-color: var(--color-surface-brand-subtle) !important;
+//  color: var(--color-text-default) !important;
+//
+//  &:hover {
+//    background-color: var(--color-surface-background-brand-hover) !important;
+//  }
+//
+//  &:disabled {
+//    background-color: var(--color-surface-background-inactive) !important;
+//    color: var(--color-text-disabled) !important;
+//  }
+//}
+//
+//// Dark mode
+//.dark .mat-mdc-unelevated-button {
+//  background-color: var(--color-secondary-500) !important;
+//  color: var(--color-primary-50) !important;
+//
+//  &:hover {
+//    background-color: var(--color-primary-400) !important;
+//  }
+//
+//  &:disabled {
+//    background-color: var(--color-primary-700) !important;
+//    color: var(--color-primary-500) !important;
+//  }
+//}
+//
+//
+//// ============================================
+//// Icon Button (tylko ikona)
+//// ============================================
+//
+//.mat-mdc-button:not(.mat-mdc-outlined-button):not(.mat-mdc-unelevated-button) {
+//
+//  display: flex !important;
+//  flex-direction: row !important;
+//  align-items: center !important;
+//  justify-content: start !important;
+//
+//  // Light mode - domyślny kolor dla wszystkich
+//  color: var(--color-text-default) !important;
+//
+//  &:hover {
+//    background-color: var(--color-surface-background-default) !important;
+//    color: var(--color-text-default) !important;
+//  }
+//
+//  .mdc-button__label {
+//    display: flex !important;
+//    flex-direction: row !important;
+//    align-items: center !important;
+//    justify-content: start !important;
+//    gap: 12px !important;
+//  }
+//
+//  // Sprawdzamy czy ma tylko ikonę (bez tekstu)
+//  &:has(mat-icon:only-child) {
+//    min-width: 36px !important;
+//    width: 36px !important;
+//    height: 36px !important;
+//    border-radius: 18px !important; // okrąg
+//    padding: 0 !important;
+//    justify-content: center !important;
+//
+//    .mdc-button__label {
+//      justify-content: center !important;
+//    }
+//  }
+//}
+//
+//// Dark mode
+//.dark .mat-mdc-button:not(.mat-mdc-outlined-button):not(.mat-mdc-unelevated-button) {
+//  color: var(--color-primary-300) !important;
+//
+//  &:hover {
+//    background-color: var(--color-primary-800) !important;
+//    color: var(--color-primary-100) !important;
+//  }
+//}
+//
+//
+//// ============================================
+//// Summary card buttons (location summary)
+//// ============================================
+//
+//.summary-btn {
+//  font-size: 14px !important;
+//  padding: 5px 20px !important;
+//  min-height: auto !important;
+//  height: auto !important;
+//  line-height: 16px !important;
+//  border-radius: 8px !important;
+//  min-width: auto !important;
+//}
+//
+//// Filled variant (Grafik wszystkich, Raport, Aktywuj/Dezaktywuj)
+//.summary-btn.mat-mdc-unelevated-button {
+//  background-color: var(--color-secondary-400) !important;
+//  color: var(--color-text-on-action) !important;
+//  border: none !important;
+//
+//  &:hover {
+//    background-color: var(--color-secondary-500) !important;
+//  }
+//}
+//
+//// Outlined variant (Grafik bieżący, Lista obecności, Wyświetl, Skopiuj link)
+//.summary-btn.mat-mdc-outlined-button {
+//  background-color: var(--color-surface-background-subtle) !important;
+//  color: var(--color-text-default) !important;
+//  border: none !important;
+//
+//  &:hover {
+//    background-color: var(--color-surface-background-default) !important;
+//  }
+//}
+//
+//// Dark mode
+//.dark {
+//  .summary-btn.mat-mdc-unelevated-button {
+//    background-color: var(--color-secondary-400) !important;
+//    color: var(--color-primary-900) !important;
+//
+//    &:hover {
+//      background-color: var(--color-secondary-500) !important;
+//    }
+//  }
+//
+//  .summary-btn.mat-mdc-outlined-button {
+//    background-color: var(--color-primary-700) !important;
+//    color: var(--color-primary-200) !important;
+//    border: none !important;
+//
+//    &:hover {
+//      background-color: var(--color-primary-600) !important;
+//    }
+//  }
+//}
+//
+////// ============================================
+////// Icon Button (automatyczne dopasowanie)
+////// ============================================
+////
+////.mat-mdc-button:not(.mat-mdc-outlined-button):not(.mat-mdc-unelevated-button) {
+////  // Stała wysokość, szerokość dopasowuje się do zawartości
+////  min-height: 48px !important;
+////  height: 48px !important;
+////  border-radius: 24px !important; // połowa wysokości = pill shape
+////  padding: 0 16px !important;
+////
+////  // Light mode
+////  color: var(--color-primary-700) !important;
+////
+////  &:hover {
+////    background-color: var(--color-primary-100) !important;
+////    color: var(--color-primary-900) !important;
+////  }
+////}
+////
+////// Dark mode
+////.dark .mat-mdc-button:not(.mat-mdc-outlined-button):not(.mat-mdc-unelevated-button) {
+////  color: var(--color-primary-300) !important;
+////
+////  &:hover {
+////    background-color: var(--color-primary-800) !important;
+////    color: var(--color-primary-100) !important;
+////  }
+////}

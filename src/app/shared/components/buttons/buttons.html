@@ -1,0 +1,49 @@
+<ng-template #content>
+  <div class="flex flex-row items-center gap-2">
+    @if(iconLeft()){
+      <svg [lucideIcon]="iconLeft()" [size]="iconSize()" [strokeWidth]="iconStroke()"></svg>
+    }
+    @if(label()){
+      <span class="font-sans"
+            [class]="textSizeClass()"
+            [class.font-semibold]="type() === 'filled'"
+            [class.font-normal]="type() !== 'filled'">{{ label() }}</span>
+    }
+    @if(iconRight()){
+      <svg [lucideIcon]="iconRight()" [size]="iconSize()" [strokeWidth]="iconStroke()"></svg>
+    }
+  </div>
+</ng-template>
+
+@if (type() === 'filled' || type() === 'outline'){
+  <button [matButton]="appearance()"
+          [class]="buttonClass() + ' ' + 'buttons-btn'"
+          [class.btn-no-hover]="!hover()"
+          [disabled]="disabled()"
+          [style.--btn-p]="padding()"
+          [style.--btn-radius]="radius()"
+          [style.--btn-bg]="bg()"
+          [style.--btn-bg-hover]="hoverBg()"
+          [style.--btn-border]="border()"
+          [style.--btn-text]="text()"
+          [matTooltip]="tooltip() ?? ''"
+          [matTooltipPosition]="tooltipPosition()"
+          (click)="buttonClick.emit($event)" >
+    <ng-container [ngTemplateOutlet]="content"/>
+  </button>
+}
+
+@if(type() === 'ghost'){
+  <button type="button"
+          [class]="'btn-ghost flex flex-row items-center justify-center cursor-pointer transition-colors ' + buttonClass()"
+          [disabled]="disabled()"
+          [style.padding]="padding()"
+          [style.border-radius]="radius()"
+          [style.background-color]="bg()"
+          [style.color]="text()"
+          [matTooltip]="tooltip() ?? ''"
+          [matTooltipPosition]="tooltipPosition()"
+          (click)="buttonClick.emit($event)" >
+    <ng-container [ngTemplateOutlet]="content"/>
+  </button>
+}

@@ -1,0 +1,39 @@
+/* ============================================ */
+/* Angular Material - Dark Mode Overrides */
+/* ============================================ */
+
+@use './variables' as vars;
+
+html.dark {
+  /* Surface colors */
+  --mat-sys-surface: #{vars.$dark-surface} !important;
+  //--mat-sys-surface-dim: #{vars.$dark-surface-dim};
+  //--mat-sys-surface-bright: #{vars.$dark-surface-bright};
+  --mat-sys-surface-container: #{vars.$dark-surface-container} !important;
+  --mat-sys-surface-container-low: #{vars.$dark-surface-container-low} !important;
+  --mat-sys-surface-container-high: #{vars.$dark-surface-container-high} !important;
+
+  /* Text colors */
+  --mat-sys-on-surface: #{vars.$dark-on-surface} !important;
+  --mat-sys-on-surface-variant: #{vars.$dark-on-surface-variant} !important;
+
+  /* Primary colors */
+  //--mat-sys-primary: #{vars.$dark-primary};
+  //--mat-sys-on-primary: #{vars.$dark-on-primary};
+  //--mat-sys-primary-container: #{vars.$dark-primary-container};
+  //--mat-sys-on-primary-container: #{vars.$dark-on-primary-container};
+
+  /* Outlines */
+  --mat-sys-outline: #{vars.$dark-outline} !important;
+  //--mat-sys-outline-variant: #{vars.$dark-outline-variant};
+
+  /* Component-specific overrides */
+  mat-drawer {
+    background-color: var(--mat-sys-surface-container) !important;
+    border-right-color: var(--mat-sys-outline-variant) !important;
+  }
+
+  mat-drawer-container {
+    background-color: var(--mat-sys-surface) !important;
+  }
+}

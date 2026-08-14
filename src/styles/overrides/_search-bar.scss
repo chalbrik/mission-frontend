@@ -1,0 +1,60 @@
+// ============================================
+// Search Bar Override (Material 3)
+// ============================================
+
+// Base styles
+.search-bar.mat-mdc-form-field {
+  --mat-form-field-filled-container-color: transparent;
+  --mdc-filled-text-field-active-indicator-height: 0;
+  --mdc-filled-text-field-focus-active-indicator-height: 0;
+  --mdc-filled-text-field-hover-active-indicator-height: 0;
+
+  .mat-mdc-text-field-wrapper {
+    border: 1px solid var(--color-primary-300) !important;
+    border-radius: 8px !important;
+    background-color: transparent !important;
+  }
+
+  .mat-mdc-form-field-infix {
+    padding-top: 10px !important;
+  }
+
+  // Hide line ripple
+  .mdc-line-ripple {
+    display: none !important;
+  }
+
+  // Hide focus overlay
+  .mat-mdc-form-field-focus-overlay {
+    display: none !important;
+  }
+
+  // Hover
+  &:not(.mat-form-field-disabled):hover .mat-mdc-text-field-wrapper {
+    border-color: var(--color-primary-500) !important;
+  }
+
+  // Focus
+  &.mat-focused:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    border-color: var(--color-primary-500) !important;
+    border-width: 2px !important;
+  }
+}
+
+// ============================================
+// Dark Mode
+// ============================================
+
+.dark .search-bar.mat-mdc-form-field {
+  .mat-mdc-text-field-wrapper {
+    border-color: var(--color-primary-600) !important;
+  }
+
+  &:not(.mat-form-field-disabled):hover .mat-mdc-text-field-wrapper {
+    border-color: var(--color-primary-400) !important;
+  }
+
+  &.mat-focused:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    border-color: var(--color-primary-400) !important;
+  }
+}

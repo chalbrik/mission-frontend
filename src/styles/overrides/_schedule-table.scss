@@ -1,0 +1,321 @@
+// ============================================
+// Schedule Table Overrides
+// ============================================
+// Baza tabeli (tło/tekst/obramowania zwykłych komórek, wierszy, stopki)
+// jest zdefiniowana w _table.scss na tokenach semantycznych i wygrywa
+// kaskadę (ładowany po schedule-table). Tutaj zostają TYLKO komórki
+// specjalne, które _table.scss nie rusza.
+
+// ============================================
+// Special cells - Light mode (MUST come after base styles)
+// ============================================
+
+// Saturday
+.mat-mdc-table .mat-mdc-header-cell.saturday-cell,
+.mat-mdc-table .mat-mdc-cell.saturday-cell {
+  background-color: var(--color-secondary-100) !important;
+}
+
+// Sunday
+.mat-mdc-table .mat-mdc-header-cell.sunday-cell,
+.mat-mdc-table .mat-mdc-cell.sunday-cell {
+  background-color: var(--color-secondary-200) !important;
+}
+
+// Settlement week boundary (days 7, 14, 21, 28)
+.mat-mdc-table .mat-mdc-header-cell.week-boundary-cell,
+.mat-mdc-table .mat-mdc-cell.week-boundary-cell {
+  border-right: 2px solid var(--color-border-default) !important;
+
+  // Remove border for last day of month
+  &.last-day {
+    border-right: none !important;
+  }
+}
+
+// Holiday
+.mat-mdc-table .mat-mdc-header-cell.holiday-cell,
+.mat-mdc-table .mat-mdc-cell.holiday-cell {
+  background-color: var(--color-primary-200) !important;
+}
+
+
+// Busy in other location
+.mat-mdc-table .mat-mdc-cell.busy-other-location-cell {
+  background-color: var(--color-rose-200) !important;
+}
+
+// Selected cell
+.mat-mdc-table .mat-mdc-cell.selected-cell {
+  border-radius: 5px !important;
+  outline: 3px solid var(--color-secondary-400) !important;
+  outline-offset: -3px;
+}
+
+// ============================================
+// Special cells - Dark mode (MUST come after base styles)
+// ============================================
+
+// Saturday - dark
+.dark .mat-mdc-table .mat-mdc-header-cell.saturday-cell,
+.dark .mat-mdc-table .mat-mdc-cell.saturday-cell {
+  background-color: var(--color-secondary-600) !important;
+}
+
+// Sunday - dark
+.dark .mat-mdc-table .mat-mdc-header-cell.sunday-cell,
+.dark .mat-mdc-table .mat-mdc-cell.sunday-cell {
+  background-color: var(--color-secondary-700) !important;
+}
+
+// Settlement week boundary - dark (days 7, 14, 21, 28)
+.dark .mat-mdc-table .mat-mdc-header-cell.week-boundary-cell,
+.dark .mat-mdc-table .mat-mdc-cell.week-boundary-cell {
+  border-right: 2px solid var(--color-border-default) !important;
+}
+
+// Holiday - dark
+.dark .mat-mdc-table .mat-mdc-header-cell.holiday-cell,
+.dark .mat-mdc-table .mat-mdc-cell.holiday-cell {
+  background-color: var(--color-primary-700) !important;
+  color: var(--color-primary-100) !important;
+}
+
+
+// Busy in other location - dark
+.dark .mat-mdc-table .mat-mdc-cell.busy-other-location-cell {
+  background-color: var(--color-rose-700) !important;
+  color: var(--color-rose-100) !important;
+}
+
+// Selected cell - dark
+.dark .mat-mdc-table .mat-mdc-cell.selected-cell {
+  outline-color: var(--color-border-brand) !important;
+}
+
+// ============================================
+// Schedule table header (sticky title)
+// ============================================
+
+// Tło i tekst jadą na tokenach semantycznych — dark przełącza się
+// automatycznie przez .dark, więc osobny override nie jest potrzebny.
+.schedule-table-header {
+  background-color: var(--color-surface-background-default) !important;
+  color: var(--color-text-default) !important;
+}
+
+// Gdy tabela ma sticky tytuł (h-14 = 3.5rem), nagłówek Material
+// musi przyklejać się poniżej tytułu, a nie na samej górze
+.schedule-table-container:has(.schedule-table-header) .mat-mdc-header-row {
+  top: 2rem !important;
+}
+
+// ============================================
+// Night shift cells - Light mode
+// ============================================
+
+.mat-mdc-table .mat-mdc-cell.night-shift-cell {
+  background-color: var(--color-purple-200) !important;
+  color: var(--color-purple-700) !important;
+}
+
+// ============================================
+// Night shift cells - Dark mode
+// ============================================
+
+.dark .mat-mdc-table .mat-mdc-cell.night-shift-cell {
+  background-color: var(--color-purple-700) !important;
+  color: var(--color-purple-100) !important;
+}
+
+// ============================================
+// Conflict cells - Light mode
+// ============================================
+
+// 11h rest conflict (rose/red)
+.mat-mdc-table .mat-mdc-cell.conflict-rest-11h-cell {
+  background-color: var(--color-teal-200) !important;
+  color: var(--color-teal-900) !important;
+}
+
+// 12h exceed conflict (secondary/blue)
+.mat-mdc-table .mat-mdc-cell.conflict-exceed-12h-cell {
+  background-color: var(--color-fuschia-300) !important;
+  color: var(--color-fuschia-600) !important;
+}
+
+// 35h weekly rest conflict (indigo)
+.mat-mdc-table .mat-mdc-cell.conflict-rest-35h-cell {
+  background-color: var(--color-indigo-200) !important;
+  color: var(--color-indigo-600) !important;
+}
+
+// Multiple conflicts - highest priority wins (11h > 12h > 35h)
+.mat-mdc-table .mat-mdc-cell.conflict-rest-11h-cell.conflict-exceed-12h-cell,
+.mat-mdc-table .mat-mdc-cell.conflict-rest-11h-cell.conflict-rest-35h-cell {
+  background-color: var(--color-teal-200) !important;
+}
+
+// ============================================
+// Conflict cells - Dark mode
+// ============================================
+
+// 11h rest conflict - dark
+.dark .mat-mdc-table .mat-mdc-cell.conflict-rest-11h-cell {
+  background-color: var(--color-teal-700) !important;
+  color: var(--color-teal-100) !important;
+  outline-color: var(--color-teal-400) !important;
+}
+
+// 12h exceed conflict - dark
+.dark .mat-mdc-table .mat-mdc-cell.conflict-exceed-12h-cell {
+  background-color: var(--color-fuschia-700) !important;
+  color: var(--color-fuschia-100) !important;
+}
+
+// 35h weekly rest conflict - dark
+.dark .mat-mdc-table .mat-mdc-cell.conflict-rest-35h-cell {
+  background-color: var(--color-indigo-700) !important;
+  color: var(--color-indigo-100) !important;
+  outline-color: var(--color-indigo-400) !important;
+}
+
+// Multiple conflicts - dark
+.dark .mat-mdc-table .mat-mdc-cell.conflict-rest-11h-cell.conflict-exceed-12h-cell,
+.dark .mat-mdc-table .mat-mdc-cell.conflict-rest-11h-cell.conflict-rest-35h-cell {
+  background-color: var(--color-teal-700) !important;
+  outline-color: var(--color-teal-400) !important;
+}
+
+// ============================================
+// Expanded group separator - lighter border
+// between employee row and its sub-rows
+// ============================================
+
+// Subtelny separator wewnątrz grupy (pracownik → jego pod-wiersze).
+// border-subtle jest delikatniejszy niż domyślny border-default rozdzielający
+// kolejnych pracowników. Token sam przełącza się light/dark (neutral-200/800).
+
+// Data row with expanded sub-rows
+.mat-mdc-table .mat-mdc-row.has-expanded-subrows .mat-mdc-cell {
+  border-bottom-color: var(--color-border-subtle) !important;
+}
+
+// Disposition row: subtelna krawędź tylko gdy wiersz delegowany też rozwinięty
+.mat-mdc-table .disposition-detail-row.has-delegated-expanded .mat-mdc-cell {
+  border-bottom-color: var(--color-border-subtle) !important;
+}
+
+// Delegated row: zachowuje domyślny border-default (mocniejszy separator
+// przed kolejnym pracownikiem)
+
+// ============================================
+// Disposition row - available day cell
+// ============================================
+
+// Light mode
+.mat-mdc-table .mat-mdc-cell.disposition-available {
+  background-color: #a7f3d0 !important; // emerald-200
+}
+
+.mat-mdc-table .mat-mdc-cell.saturday-cell.disposition-available,
+.mat-mdc-table .mat-mdc-cell.sunday-cell.disposition-available {
+  background-color: #6ee7b7 !important; // emerald-300 (weekend + available)
+}
+
+// Disposition night shift - purple
+.mat-mdc-table .mat-mdc-cell.disposition-night-shift {
+  background-color: var(--color-purple-200) !important;
+}
+
+.mat-mdc-table .mat-mdc-cell.saturday-cell.disposition-night-shift,
+.mat-mdc-table .mat-mdc-cell.sunday-cell.disposition-night-shift {
+  background-color: var(--color-purple-300) !important;
+}
+
+// Dark mode
+.dark .mat-mdc-table .mat-mdc-cell.disposition-night-shift {
+  background-color: var(--color-purple-800) !important;
+}
+
+.dark .mat-mdc-table .mat-mdc-cell.saturday-cell.disposition-night-shift,
+.dark .mat-mdc-table .mat-mdc-cell.sunday-cell.disposition-night-shift {
+  background-color: var(--color-purple-700) !important;
+}
+
+// Dark mode
+.dark .mat-mdc-table .mat-mdc-cell.disposition-available {
+  background-color: #065f46 !important; // emerald-900
+}
+
+.dark .mat-mdc-table .mat-mdc-cell.saturday-cell.disposition-available,
+.dark .mat-mdc-table .mat-mdc-cell.sunday-cell.disposition-available {
+  background-color: #047857 !important; // emerald-700
+}
+
+// ============================================
+// Cell hover effect - Light mode (only schedule tables)
+// ============================================
+
+.schedule-table-container .mat-mdc-table .mat-mdc-cell:hover {
+  filter: brightness(0.92) !important;
+  cursor: pointer;
+}
+
+// ============================================
+// Cell hover effect - Dark mode (only schedule tables)
+// ============================================
+
+.dark .schedule-table-container .mat-mdc-table .mat-mdc-cell:hover {
+  filter: brightness(1.15) !important;
+  cursor: pointer;
+}
+
+// ============================================
+// Tooltip for conflicts - multiline support
+// ============================================
+
+.mat-mdc-tooltip.conflict-tooltip .mdc-tooltip__surface {
+  white-space: pre-line !important;
+  max-width: 300px !important;
+}
+
+// ============================================
+// Vacation cells (Urlop) - orange
+// ============================================
+
+.mat-mdc-table .mat-mdc-cell.vacation-cell,
+.mat-mdc-table .mat-mdc-cell.saturday-cell.vacation-cell,
+.mat-mdc-table .mat-mdc-cell.sunday-cell.vacation-cell,
+.mat-mdc-table .mat-mdc-cell.holiday-cell.vacation-cell {
+  background: var(--color-orange-100) !important;
+  color: var(--color-orange-700) !important;
+}
+
+.dark .mat-mdc-table .mat-mdc-cell.vacation-cell,
+.dark .mat-mdc-table .mat-mdc-cell.saturday-cell.vacation-cell,
+.dark .mat-mdc-table .mat-mdc-cell.sunday-cell.vacation-cell,
+.dark .mat-mdc-table .mat-mdc-cell.holiday-cell.vacation-cell {
+  background: var(--color-orange-600) !important;
+  color: var(--color-orange-100) !important;
+}
+
+// ============================================
+// Sick leave cells (L4) - teal
+// ============================================
+
+.mat-mdc-table .mat-mdc-cell.sick-leave-cell,
+.mat-mdc-table .mat-mdc-cell.saturday-cell.sick-leave-cell,
+.mat-mdc-table .mat-mdc-cell.sunday-cell.sick-leave-cell,
+.mat-mdc-table .mat-mdc-cell.holiday-cell.sick-leave-cell {
+  background: var(--color-teal-100) !important;
+  color: var(--color-teal-700) !important;
+}
+
+.dark .mat-mdc-table .mat-mdc-cell.sick-leave-cell,
+.dark .mat-mdc-table .mat-mdc-cell.saturday-cell.sick-leave-cell,
+.dark .mat-mdc-table .mat-mdc-cell.sunday-cell.sick-leave-cell,
+.dark .mat-mdc-table .mat-mdc-cell.holiday-cell.sick-leave-cell {
+  background: var(--color-teal-600) !important;
+  color: var(--color-teal-100) !important;
+}

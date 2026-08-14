@@ -1,0 +1,29 @@
+/* ============================================ */
+/* Angular Material - Light Mode Overrides */
+/* ============================================ */
+
+@use './variables' as vars;
+
+html {
+  /* Surface colors */
+  --mat-sys-surface: #{vars.$light-surface} !important;
+  //--mat-sys-surface-dim: #{vars.$light-surface-dim};
+  //--mat-sys-surface-bright: #{vars.$light-surface-bright};
+  --mat-sys-surface-container: #{vars.$light-surface-container} !important;
+  --mat-sys-surface-container-low: #{vars.$light-surface-container-low} !important;
+  --mat-sys-surface-container-high: #{vars.$light-surface-container-high} !important;
+
+  /* Text colors */
+  --mat-sys-on-surface: #{vars.$light-on-surface} !important;
+  --mat-sys-on-surface-variant: #{vars.$light-on-surface-variant} !important;
+
+  /* Primary colors */
+  //--mat-sys-primary: #{vars.$light-primary};
+  //--mat-sys-on-primary: #{vars.$light-on-primary};
+  //--mat-sys-primary-container: #{vars.$light-primary-container};
+  //--mat-sys-on-primary-container: #{vars.$light-on-primary-container};
+
+  /* Outlines */
+  --mat-sys-outline: #{vars.$light-outline} !important;
+  //--mat-sys-outline-variant: #{vars.$light-outline-variant};
+}
