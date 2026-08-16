@@ -17,6 +17,7 @@
 
 @if (type() === 'filled' || type() === 'outline'){
   <button [matButton]="appearance()"
+          [type]="buttonType()"
           [class]="buttonClass() + ' ' + 'buttons-btn'"
           [class.btn-no-hover]="!hover()"
           [disabled]="disabled()"
@@ -34,7 +35,8 @@
 }
 
 @if(type() === 'ghost'){
-  <button type="button"
+  <button
+          [type]="buttonType()"
           [class]="'btn-ghost flex flex-row items-center justify-center cursor-pointer transition-colors ' + buttonClass()"
           [disabled]="disabled()"
           [style.padding]="padding()"

@@ -61,6 +61,7 @@ const DEFAULT_COLORS: Record<ButtonType, ButtonColors> = {
 export class Buttons {
 
   type = input<ButtonType>('outline');
+  buttonType = input<'button' | 'submit'>('button');
   size = input<'base' | 'small'>('base');
   rounded = input<'small' | 'big'>('small');
 

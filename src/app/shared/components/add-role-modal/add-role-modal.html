@@ -1,0 +1,45 @@
+<form novalidate (submit)="createRole($event)">
+  <div class="bg-surface-background-default p-4 flex flex-col">
+    <p>Dodaj role</p>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nazwa</mat-label>
+      <input [formField]="addRoleForm.name"  matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Opis</mat-label>
+      <textarea [formField]="addRoleForm.note"
+                matInput
+                placeholder="Placeholder"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="3"
+                cdkAutosizeMaxRows="8"
+      ></textarea>
+    </mat-form-field>
+
+    <div class="flex flex-row justify-between items-center">
+      <app-buttons
+        [type]="'outline'"
+        [iconLeft]="LucideX"
+        [size]="'small'"
+        [rounded]="'big'"
+        [textColor]="'text-default'"
+        (buttonClick)="dialogRef.close()"
+      ></app-buttons>
+
+      <app-buttons
+        [type]="'outline'"
+        [buttonType]="'submit'"
+        [iconLeft]="LucideCheck"
+        [size]="'small'"
+        [rounded]="'big'"
+        [textColor]="'text-default'"
+      ></app-buttons>
+    </div>
+
+
+
+  </div>
+</form>
+

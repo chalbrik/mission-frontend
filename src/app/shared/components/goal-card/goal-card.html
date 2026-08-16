@@ -1,0 +1,23 @@
+<div class="flex flex-row items-center justify-between gap-4 border border-border-default rounded-xl p-4"
+     [class.border-border-default]="!isSelected()"
+     [class.border-blue-500]="isSelected()"
+     (click)="selected.emit(goal().id)">
+  <div class="flex flex-row items-center gap-3">
+    <mat-checkbox
+      [checked]="completed()"
+      [disabled]="completed()"
+      (click)="$event.stopPropagation()"
+      (change)="complete()"
+    ></mat-checkbox>
+    <p class="text-p-sm text-text-default font-semibold">{{ goal().target_outcome }}</p>
+  </div>
+  <app-buttons
+    [type]="'outline'"
+    [iconLeft]="LucideTrash2"
+    [size]="'small'"
+    [rounded]="'big'"
+    [textColor]="'text-default'"
+    (click)="$event.stopPropagation()"
+    (buttonClick)="deleteGoal(goal())"
+  ></app-buttons>
+</div>

@@ -1,0 +1,40 @@
+<form novalidate (submit)="createBlock($event)">
+  <div class="bg-surface-background-default p-4 flex flex-col">
+    <p>Dodaj cel</p>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cel</mat-label>
+      <textarea [formField]="addBlockForm.name"
+                matInput
+                placeholder="Placeholder"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="3"
+                cdkAutosizeMaxRows="8"
+      ></textarea>
+    </mat-form-field>
+
+    <div class="flex flex-row justify-between items-center">
+      <app-buttons
+        [type]="'outline'"
+        [iconLeft]="LucideX"
+        [size]="'small'"
+        [rounded]="'big'"
+        [textColor]="'text-default'"
+        (buttonClick)="dialogRef.close()"
+      ></app-buttons>
+
+      <app-buttons
+        [type]="'outline'"
+        [buttonType]="'submit'"
+        [iconLeft]="LucideCheck"
+        [size]="'small'"
+        [rounded]="'big'"
+        [textColor]="'text-default'"
+      ></app-buttons>
+    </div>
+
+
+
+  </div>
+</form>
+

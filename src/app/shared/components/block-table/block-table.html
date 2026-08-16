@@ -1,0 +1,12 @@
+<div class="h-full w-96 border p-4 rounded-xl flex flex-col gap-6">
+  <p>Zadania celu {{ goalId() }}</p>
+  <app-add-tab
+    [title]="'Zadania'"
+    (add)="openAddBlock()"
+  ></app-add-tab>
+  @for(block of blocks(); track block.id){
+    <app-block-card
+      [block]="block"
+    ></app-block-card>
+  }
+</div>

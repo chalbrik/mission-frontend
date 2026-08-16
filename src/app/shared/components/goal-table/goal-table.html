@@ -1,0 +1,15 @@
+<div class="h-full w-96 border p-4 rounded-xl flex flex-col gap-6">
+  <p>Cele roli {{ roleId() }}</p>
+  <app-add-tab
+    [title]="'Cele'"
+    (add)="openAddGoal()"
+  ></app-add-tab>
+  @for(goal of goals(); track goal.id){
+    <app-goal-card
+      [goal]="goal"
+      [isSelected]="goal.id === selectedGoalId()"
+      (selected)="onGoalSelected($event)"
+    ></app-goal-card>
+
+  }
+</div>

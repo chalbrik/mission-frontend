@@ -1,11 +1,12 @@
 <div class="flex flex-row justify-between items-center w-full">
-  <p>{{ title() }}</p>
+  <p class="text-text-default text-p-sm font-bold">{{ title() }}</p>
   <app-buttons
     [type]="'outline'"
     [iconLeft]="LucidePlus"
     [size]="'small'"
     [rounded]="'big'"
-    [textColor]="'neutral-300'"
+    [textColor]="'text-default'"
+    (buttonClick)="add.emit()"
   ></app-buttons>
 </div>
 

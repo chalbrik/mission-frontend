@@ -1,6 +1,8 @@
-import {Component, input} from '@angular/core';
+import {Component, inject, input, output} from '@angular/core';
 import {Buttons} from '../buttons/buttons';
 import {LucideEllipsisVertical, LucidePlus} from '@lucide/angular';
+import {AddRoleModal} from '../add-role-modal/add-role-modal';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-tab',
@@ -11,7 +13,10 @@ import {LucideEllipsisVertical, LucidePlus} from '@lucide/angular';
   styleUrl: './add-tab.scss',
 })
 export class AddTab {
-  title = input<string>('');
-  protected readonly LucideEllipsisVertical = LucideEllipsisVertical;
   protected readonly LucidePlus = LucidePlus;
+
+  title = input<string>('');
+
+  readonly add = output<void>();
+
 }

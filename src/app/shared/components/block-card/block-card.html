@@ -1,0 +1,17 @@
+<div class="flex flex-row items-center justify-between gap-4 border border-border-default rounded-xl p-4">
+  <div class="flex flex-row items-center gap-3">
+    <mat-checkbox
+      [checked]="completed()"
+      [disabled]="completed()"
+    ></mat-checkbox>
+    <p class="text-p-sm text-text-default font-semibold">{{ block().name }}</p>
+  </div>
+  <app-buttons
+    [type]="'outline'"
+    [iconLeft]="LucideTrash2"
+    [size]="'small'"
+    [rounded]="'big'"
+    [textColor]="'text-default'"
+    (buttonClick)="deleteBlock(block())"
+  ></app-buttons>
+</div>

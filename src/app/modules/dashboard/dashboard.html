@@ -1,15 +1,37 @@
-<div [class]="'bg-slate-900 flex flex-row'">
+<div [class]="'bg-surface-background-subtle flex flex-row'">
   <app-navigation></app-navigation>
 
+  <div class="flex flex-row gap-4 p-4">
+    <div class="flex flex-col gap-4">
+      <app-add-tab
+        [title]="'Role'"
+        (add)="openAddRole()"
+      ></app-add-tab>
+      @for(role of roles(); track role.id){
+        <app-role-card
+          [id]="role.id"
+          [title]="role.name"
+          [description]="role.note"
+          [points]="role.points"
+          [isSelected]="role.id === selectedRoleId()"
+          (selected)="onRoleSelected($event)"
+        ></app-role-card>
+      }
+    </div>
 
+    @if(selectedRoleId() !== 0){
+      <app-goal-table
+        [roleId]="selectedRoleId()"
+        (goalSelected)="selectedGoalId.set($event)"
+      ></app-goal-table>
+    }
+    @if(selectedGoalId() !== 0){
+      <app-block-table
+        [goalId]="selectedGoalId()"
+      ></app-block-table>
+    }
 
-  <div class="flex flex-col gap-2">
-    <app-add-tab
-      [title]="'Role'"
-    ></app-add-tab>
-    <app-role-card
-      [title]="'Lider'"
-      [description]="'Rozwój osobisty, medytacja, treningi, zdrowie i higiena psychiczna.'"
-    ></app-role-card>
   </div>
+
+
 </div>

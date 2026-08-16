@@ -8,7 +8,6 @@
 @theme static {
   --font-sans: "Google Sans Flex", sans-serif;
   --font-display: "Google Sans Flex", sans-serif;
-  /*--font-geist: "Google Sans Flex", sans-serif;*/
 
   /* Custom font size */
   --font-size-xxs: 10px;
@@ -84,6 +83,19 @@
   --color-neutral-800: #262626;
   --color-neutral-900: #171717;
   --color-neutral-950: #0A0A0A;
+
+  /* Slate */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
 
   /* Red */
   --color-red-50: #FEF2F2;
@@ -218,19 +230,22 @@
   /* Surface */
   --color-surface-shadow: var(--color-neutral-900);
 
-  --color-surface-background-default: var(--color-neutral-100);
+  --color-surface-background-default: var(--color-slate-900);
+
   --color-surface-background-brand: var(--color-primary-500);
   --color-surface-background-brand-hover: var(--color-primary-400);
-  --color-surface-background-subtle: var(--color-neutral-50);
-  --color-surface-background-elevated: var(--color-neutral-800);
-  --color-surface-background-overlay: var(--color-neutral-900);
-  --color-surface-background-inactive: var(--color-neutral-200);
 
-  --color-surface-brand-default: var(--color-neutral-950);
-  --color-surface-brand-subtle: #FFFFFF;
+  --color-surface-background-subtle: var(--color-slate-950);
+  --color-surface-background-elevated: var(--color-slate-800);
+  --color-surface-background-overlay: var(--color-slate-950);
+  --color-surface-background-inactive: var(--color-slate-200);
+  --color-surface-background-selected: var(--color-slate-800);
 
-  --color-surface-filters-default: var(--color-neutral-100);
-  --color-surface-filters-active: var(--color-neutral-700);
+  --color-surface-brand-default: var(--color-rose-600);
+  --color-surface-brand-subtle: var(--color-rose-600);
+
+  --color-surface-filters-default: var(--color-slate-100);
+  --color-surface-filters-active: var(--color-slate-700);
 
   --color-surface-error-default: var(--color-red-600);
   --color-surface-error-subtle: var(--color-red-300);
@@ -243,12 +258,12 @@
 
 
   /* Text */
-  --color-text-default: var(--color-neutral-800);
-  --color-text-hover: var(--color-primary-600);
-  --color-text-disabled: var(--color-neutral-400);
-  --color-text-on-action: var(--color-neutral-50);
-  --color-text-subtle: var(--color-neutral-400);
-  --color-text-brand: var(--color-primary-500);
+  --color-text-default: var(--color-slate-100);
+  --color-text-hover: var(--color-slate-50);
+  --color-text-disabled: var(--color-slate-300);
+  --color-text-on-action: var(--color-slate-800);
+  --color-text-subtle: var(--color-slate-200);
+  --color-text-brand: var(--color-rose-600);
   --color-text-error: var(--color-red-600);
   --color-text-warning: var(--color-orange-600);
   --color-text-success: var(--color-green-600);
