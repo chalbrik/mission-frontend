@@ -4,6 +4,8 @@ import {Buttons} from '../buttons/buttons';
 import {LucideTrash2, LucideX} from '@lucide/angular';
 import {Goal} from '../../services/goal';
 import {MatCheckbox} from '@angular/material/checkbox';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmationModal} from '../confirmation-modal/confirmation-modal';
 
 @Component({
   selector: 'app-goal-card',
@@ -18,6 +20,7 @@ import {MatCheckbox} from '@angular/material/checkbox';
 export class GoalCard {
   protected readonly LucideTrash2 = LucideTrash2;
   private readonly goalService = inject(Goal);
+  private readonly dialog = inject(MatDialog);
 
   goal = input.required<GoalInterface>();
   isSelected = input<boolean>(false);
@@ -35,10 +38,15 @@ export class GoalCard {
     });
   }
 
-  deleteGoal(goal: GoalInterface) {
-    this.goalService.deleteGoal(this.goal().id).subscribe({
-      error: () => console.error('Nie udało się usunąć celu'),
-    });
+  deleteGoal() {
+   this.dialog.open(ConfirmationModal, {
+      data: {
+        subject: 'goal',
+        title: 'Usuwanie',
+        text: 'Czy na pewno chcesz usunąć cel?',
+        itemId: this.goal().id
+      },
+    })
   }
 
 }

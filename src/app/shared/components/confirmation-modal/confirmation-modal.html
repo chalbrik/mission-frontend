@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  {{ data.text }}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <app-buttons
+    [iconLeft]="LucideX"
+    (buttonClick)="onCancel()"
+  ></app-buttons>
+
+  <app-buttons
+    [iconLeft]="LucideCheck"
+    (buttonClick)="onConfirm()"
+  ></app-buttons>
+</mat-dialog-actions>

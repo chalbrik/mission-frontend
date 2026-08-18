@@ -1,0 +1,22 @@
+// ============================================
+// Mat Dialog Override (Material 3)
+// ============================================
+
+.mat-mdc-dialog-container {
+  --mat-dialog-container-color: var(--color-surface-background-default);
+  --mat-dialog-container-shape: 16px;
+  --mat-dialog-container-elevation-shadow: none;
+
+  --mat-dialog-subhead-color: var(--color-text-default);
+  --mat-dialog-supporting-text-color: var(--color-text-default);
+
+  --mat-dialog-headline-padding: 16px 24px 8px;
+  --mat-dialog-content-padding: 0 24px;
+  --mat-dialog-with-actions-content-padding: 0 24px 8px;
+  --mat-dialog-actions-padding: 16px 24px;
+  --mat-dialog-actions-alignment: space-between;
+}
+
+.mat-mdc-dialog-surface {
+  border: 1px solid var(--color-border-default);
+}

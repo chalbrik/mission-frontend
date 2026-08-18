@@ -1,9 +1,10 @@
 import {Component, inject, input, signal} from '@angular/core';
 import {Buttons} from "../buttons/buttons";
 import {MatCheckbox} from "@angular/material/checkbox";
-import {Block} from '../../services/block';
 import {BlockInterface} from '../../interfaces/block.interface';
 import { LucideTrash2 } from '@lucide/angular';
+import {ConfirmationModal} from '../confirmation-modal/confirmation-modal';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-block-card',
@@ -16,7 +17,7 @@ import { LucideTrash2 } from '@lucide/angular';
 })
 export class BlockCard {
   protected readonly LucideTrash2 = LucideTrash2;
-  private readonly blockService = inject(Block);
+  private readonly dialog = inject(MatDialog);
 
   block = input.required<BlockInterface>();
 
@@ -33,9 +34,14 @@ export class BlockCard {
   //   });
   // }
 
-  deleteBlock(block: BlockInterface) {
-    this.blockService.deleteBlock(this.block().id).subscribe({
-      error: () => console.error('Nie udało się usunąć zadania'),
-    });
+  deleteBlock() {
+    this.dialog.open(ConfirmationModal, {
+      data: {
+        subject: 'block',
+        title: 'Usuwanie',
+        text: 'Czy na pewno chcesz usunąć zadanie?',
+        itemId: this.block().id
+      },
+    })
   }
 }

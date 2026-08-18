@@ -1,10 +1,9 @@
 import {Component, inject, input, output, signal} from '@angular/core';
 import { Buttons } from '../buttons/buttons';
 import { LucideCheck, LucideEllipsisVertical } from '@lucide/angular';
-import { Role } from '../../services/role';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
-import {AddRoleModal} from '../add-role-modal/add-role-modal';
+import {ConfirmationModal} from '../confirmation-modal/confirmation-modal';
 
 @Component({
   selector: 'app-role-card',
@@ -13,7 +12,7 @@ import {AddRoleModal} from '../add-role-modal/add-role-modal';
   styleUrl: './role-card.scss',
 })
 export class RoleCard {
-  private readonly roleService = inject(Role);
+  private readonly dialog = inject(MatDialog);
 
   id = input.required<number>();
   title = input<string>('');
@@ -27,9 +26,14 @@ export class RoleCard {
   protected readonly error = signal<string | null>(null);
 
   deleteRole() {
-    this.roleService.deleteRole(this.id()).subscribe({
-      error: () => this.error.set('Nie udało się usunąć roli'),
-    });
+    this.dialog.open(ConfirmationModal, {
+      data: {
+        subject: 'role',
+        title: 'Usuwanie',
+        text: 'Czy na pewno chcesz usunąć role?',
+        itemId: this.id()
+      },
+    })
   }
 
   protected readonly LucideCheck = LucideCheck;
