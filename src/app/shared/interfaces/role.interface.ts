@@ -8,4 +8,9 @@ export interface RoleInterface {
   name: string;
   note: string;
   points: number;
+  color: string;
+}
+
+export interface RoleCreatePayload extends RoleFormInterface {
+  color: string
 }

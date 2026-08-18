@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, inject, OnInit, signal} from '@angular/core';
 import {Navigation} from '../navigation/navigation';
 import {RoleCard} from '../../shared/components/role-card/role-card';
 import {AddTab} from '../../shared/components/add-tab/add-tab';
@@ -30,6 +30,10 @@ export class Dashboard implements OnInit {
 
   readonly selectedRoleId = signal<number>(0);
   readonly selectedGoalId = signal<number>(0);
+
+  readonly selectedRoleColor = computed(() =>
+    this.roles().find((r) => r.id === this.selectedRoleId())?.color ?? ''
+  );
 
   ngOnInit() {
     this.roleService.loadRoles();

@@ -14,6 +14,7 @@
           [description]="role.note"
           [points]="role.points"
           [isSelected]="role.id === selectedRoleId()"
+          [color]="role.color"
           (selected)="onRoleSelected($event)"
         ></app-role-card>
       }
@@ -22,12 +23,14 @@
     @if(selectedRoleId() !== 0){
       <app-goal-table
         [roleId]="selectedRoleId()"
+        [color]="selectedRoleColor()"
         (goalSelected)="selectedGoalId.set($event)"
       ></app-goal-table>
     }
     @if(selectedGoalId() !== 0){
       <app-block-table
         [goalId]="selectedGoalId()"
+        [color]="selectedRoleColor()"
       ></app-block-table>
     }
 
