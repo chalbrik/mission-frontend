@@ -1,6 +1,6 @@
 <div class="max-w-96 border p-4 rounded-xl flex flex-col gap-6"
-     [class.border-border-default]="!isSelected()"
-     [class.border-blue-500]="isSelected()"
+     [style.border-color]="cardBorderColor()"
+     [style.box-shadow]="selectionRing()"
      (click)="selected.emit(id())"
 >
   <div class="w-full flex flex-row justify-between items-center">
@@ -21,7 +21,7 @@
     />
 
     <mat-menu #roleMenu="matMenu">
-<!--      <button mat-menu-item (click)="roleEdit.emit(id())">Edytuj</button>-->
+      <button mat-menu-item (click)="editRole()">Edytuj</button>
       <button mat-menu-item (click)="deleteRole()">Usuń</button>
     </mat-menu>
 
