@@ -1,5 +1,4 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import {Navigation} from '../navigation/navigation';
 import {RoleCard} from '../../shared/components/role-card/role-card';
 import {AddTab} from '../../shared/components/add-tab/add-tab';
 import {Role} from '../../shared/services/role';
@@ -11,7 +10,6 @@ import {BlockTable} from '../../shared/components/block-table/block-table';
 @Component({
   selector: 'app-dashboard',
   imports: [
-    Navigation,
     RoleCard,
     AddTab,
     GoalTable,
