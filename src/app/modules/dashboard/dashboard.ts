@@ -11,7 +11,6 @@ import {BlockTable} from '../../shared/components/block-table/block-table';
 @Component({
   selector: 'app-dashboard',
   imports: [
-    Navigation,
     RoleCard,
     AddTab,
     GoalTable,

@@ -7,8 +7,19 @@ export const routes: Routes = [
     loadComponent: () => import('./modules/login/login').then(m => m.Login),
   },
   {
-    path: 'dashboard',
+    path: '',
     canActivate: [authGuard],
-    loadComponent: () => import('./modules/dashboard/dashboard').then(m => m.Dashboard),
-  },
+    loadComponent: () => import('./modules/layout/layout').then(m => m.Layout),
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./modules/dashboard/dashboard').then(m => m.Dashboard),
+      },
+      {
+        path: 'calendar',
+        loadComponent: () => import('./modules/calendar/calendar').then(m => m.Calendar),
+      },
+    ]
+  }
+
 ];
