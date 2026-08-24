@@ -31,8 +31,6 @@ export class RoleCard {
 
   protected readonly cardBorderColor = computed(() => this.isSelected() ? this.identityColor() : 'var(--color-border-default)');
 
-  protected readonly selectionRing = computed(() => this.isSelected() ? `0 0 0 2px ${this.identityColor()}` : null);
-
   deleteRole() {
     this.dialog.open(ConfirmationModal, {
       data: {
