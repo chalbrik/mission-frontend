@@ -33,7 +33,7 @@ export class Login {
     this.error.set(null);
 
     this.auth.login(username, password).subscribe({
-      next: () => this.router.navigateByUrl('/dashboard'),
+      next: () => this.router.navigateByUrl('dashboard'),
       error: (err) => {
         this.loading.set(false);
         this.error.set(err.status === 401 ? 'Nieprawidłowy login lub hasło' : 'Coś poszło nie tak, spróbuj ponownie');

@@ -1,24 +1,25 @@
 <form novalidate (submit)="createRole($event)">
-  <div class="bg-surface-background-default p-4 flex flex-col">
-    <p>Dodaj role</p>
+    <h2 mat-dialog-title>Dodaj rolę</h2>
+    <mat-dialog-content>
+      <div class="flex flex-col">
+        <mat-form-field appearance="fill">
+          <mat-label>Nazwa</mat-label>
+          <input [formField]="roleForm.name"  matInput>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Nazwa</mat-label>
-      <input [formField]="addRoleForm.name"  matInput placeholder="Placeholder">
-    </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Opis</mat-label>
-      <textarea [formField]="addRoleForm.note"
-                matInput
-                placeholder="Placeholder"
-                cdkTextareaAutosize
-                cdkAutosizeMinRows="3"
-                cdkAutosizeMaxRows="8"
-      ></textarea>
-    </mat-form-field>
-
-    <div class="flex flex-row justify-between items-center">
+        <mat-form-field appearance="fill">
+          <mat-label>Opis</mat-label>
+          <textarea [formField]="roleForm.note"
+                    matInput
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="3"
+                    cdkAutosizeMaxRows="8"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
       <app-buttons
         [type]="'outline'"
         [iconLeft]="LucideX"
@@ -36,10 +37,6 @@
         [rounded]="'big'"
         [textColor]="'text-default'"
       ></app-buttons>
-    </div>
-
-
-
-  </div>
+    </mat-dialog-actions>
 </form>
 

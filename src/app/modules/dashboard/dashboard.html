@@ -1,7 +1,4 @@
-<div [class]="'bg-surface-background-subtle flex flex-row'">
-  <app-navigation></app-navigation>
-
-  <div class="flex flex-row gap-4 p-4">
+<div class="flex flex-row gap-4 p-4">
     <div class="flex flex-col gap-4">
       <app-add-tab
         [title]="'Role'"
@@ -14,6 +11,7 @@
           [description]="role.note"
           [points]="role.points"
           [isSelected]="role.id === selectedRoleId()"
+          [color]="role.color"
           (selected)="onRoleSelected($event)"
         ></app-role-card>
       }
@@ -22,16 +20,16 @@
     @if(selectedRoleId() !== 0){
       <app-goal-table
         [roleId]="selectedRoleId()"
+        [color]="selectedRoleColor()"
         (goalSelected)="selectedGoalId.set($event)"
       ></app-goal-table>
     }
     @if(selectedGoalId() !== 0){
       <app-block-table
         [goalId]="selectedGoalId()"
+        [color]="selectedRoleColor()"
       ></app-block-table>
     }
 
   </div>
 
-
-</div>

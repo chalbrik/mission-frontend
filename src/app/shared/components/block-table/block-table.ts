@@ -1,4 +1,4 @@
-import {Component, effect, inject, input} from '@angular/core';
+import {Component, computed, effect, inject, input} from '@angular/core';
 import {AddTab} from "../add-tab/add-tab";
 import {GoalCard} from "../goal-card/goal-card";
 import {MatDialog} from '@angular/material/dialog';
@@ -21,9 +21,12 @@ export class BlockTable {
   private readonly blockService = inject(Block);
 
   goalId = input.required<number>();
+  color = input<string>('');
 
   readonly blocks = this.blockService.blocks;
   readonly error = this.blockService.error;
+
+  protected readonly identityColor = computed(() => `var(--color-${this.color()}-500)`);
 
   constructor() {
     effect(() => {

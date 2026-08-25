@@ -1,6 +1,5 @@
 <div class="max-w-96 border p-4 rounded-xl flex flex-col gap-6"
-     [class.border-border-default]="!isSelected()"
-     [class.border-blue-500]="isSelected()"
+     [style.border-color]="cardBorderColor()"
      (click)="selected.emit(id())"
 >
   <div class="w-full flex flex-row justify-between items-center">
@@ -21,23 +20,19 @@
     />
 
     <mat-menu #roleMenu="matMenu">
-<!--      <button mat-menu-item (click)="roleEdit.emit(id())">Edytuj</button>-->
+      <button mat-menu-item (click)="editRole()">Edytuj</button>
       <button mat-menu-item (click)="deleteRole()">Usuń</button>
     </mat-menu>
 
 
   </div>
 
-  <div class="flex flex-row gap-2 items-center">
+  <div class="flex flex-row gap-2 items-center justify-between">
     <p class="text-p-base text-text-default font-normal">{{ description() }}</p>
 
     <div class="flex flex-row items-end gap-8">
       <div class="w-16 h-16 shrink-0 border border-neutral-300 rounded-full flex items-center justify-center">
         <p class="text-p-xl font-semibold text-text-default">{{ points() }}</p>
-      </div>
-
-      <div class="flex items-center justify-center">
-        <p class="text-p-lg font-semibold text-text-default">33</p>
       </div>
     </div>
 
