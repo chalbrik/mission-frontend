@@ -8,11 +8,17 @@ import {LucideCheck, LucidePlus, LucideX} from '@lucide/angular';
 import {RoleFormInterface, RoleInterface} from '../../interfaces/role.interface';
 import {form, FormField, required, submit} from '@angular/forms/signals';
 import {firstValueFrom} from 'rxjs';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-role-modal',
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule, Buttons, FormField],
+  imports: [MatFormFieldModule, MatInputModule, MatIconModule, Buttons, FormField, MatDialogActions, MatDialogContent, MatDialogTitle],
   templateUrl: './add-role-modal.html',
   styleUrl: './add-role-modal.scss',
 })
