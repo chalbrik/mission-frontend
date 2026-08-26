@@ -31,6 +31,7 @@ export class BlockTable {
   constructor() {
     effect(() => {
       this.blockService.loadBlocks(this.goalId());
+      console.log("blocks: ", this.blocks());
     });
   }
 

@@ -62,4 +62,14 @@ export class Block {
     );
   }
 
+  completeBlock(id: number, completed: boolean): Observable<BlockInterface> {
+    return this.http.patch<BlockInterface>(`${this.apiUrl}blocks/${id}/`, {completed})
+      .pipe(
+        tap((updated) => {
+          this._blocks.update((list) => list.map((b) => (b.id === updated.id ? updated : b)));
+          this._calendarBlocks.update((list) => list.map((b) => (b.id === updated.id ? updated : b)));
+        }),
+      );
+  }
+
 }

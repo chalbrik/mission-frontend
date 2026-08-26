@@ -7,6 +7,7 @@ export interface BlockInterface {
   id: number;
   name: string;
   difficulty: number;
+  completed: boolean;
   scheduled_date?: string;
   created_at: string;
   goal: number;

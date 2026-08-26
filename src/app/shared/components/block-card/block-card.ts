@@ -1,10 +1,11 @@
-import {Component, inject, input, signal} from '@angular/core';
+import {Component, inject, input, OnInit, signal} from '@angular/core';
 import {Buttons} from "../buttons/buttons";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {BlockInterface} from '../../interfaces/block.interface';
 import { LucideTrash2 } from '@lucide/angular';
 import {ConfirmationModal} from '../confirmation-modal/confirmation-modal';
 import {MatDialog} from '@angular/material/dialog';
+import {Block} from '../../services/block'
 
 @Component({
   selector: 'app-block-card',
@@ -15,24 +16,24 @@ import {MatDialog} from '@angular/material/dialog';
   templateUrl: './block-card.html',
   styleUrl: './block-card.scss',
 })
-export class BlockCard {
+export class BlockCard implements OnInit {
   protected readonly LucideTrash2 = LucideTrash2;
   private readonly dialog = inject(MatDialog);
+  private readonly blockService = inject(Block);
 
   block = input.required<BlockInterface>();
 
-  isSelected = input<boolean>(false);
-
   protected readonly completed = signal(false);
 
-  // complete() {
-  //   if (this.completed()) return;
-  //   this.completed.set(true);
-  //
-  //   this.blockService.completeBlock(this.block().id, this.block().role).subscribe({
-  //     error: () => this.completed.set(false),
-  //   });
-  // }
+  ngOnInit() {
+    this.completed.set(this.block().completed);
+  }
+
+  complete() {
+    this.blockService.completeBlock(this.block().id, this.completed()).subscribe({
+      error: () => this.completed.set(false),
+    });
+  }
 
   deleteBlock() {
     this.dialog.open(ConfirmationModal, {
