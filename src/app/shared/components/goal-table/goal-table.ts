@@ -1,4 +1,4 @@
-import {Component, computed, effect, inject, input, output, signal} from '@angular/core';
+import {Component, computed, effect, inject, input, OnInit, output, signal} from '@angular/core';
 import {AddTab} from '../add-tab/add-tab';
 import {MatDialog} from '@angular/material/dialog';
 import {AddGoalModal} from '../add-goal-modal/add-goal-modal';
@@ -32,7 +32,6 @@ export class GoalTable {
 
   constructor() {
     effect(() => {
-      this.selectedGoalId.set(0);
       this.goalService.loadGoals(this.roleId());
     });
   }

@@ -30,6 +30,7 @@ export class BlockCard implements OnInit {
   }
 
   complete() {
+    this.completed.set(!this.completed());
     this.blockService.completeBlock(this.block().id, this.completed()).subscribe({
       error: () => this.completed.set(false),
     });
