@@ -1,4 +1,4 @@
-import {Component, computed, effect, inject, input, OnInit} from '@angular/core';
+import {Component, computed, effect, inject, input} from '@angular/core';
 import {AddTab} from "../add-tab/add-tab";
 import {GoalCard} from "../goal-card/goal-card";
 import {MatDialog} from '@angular/material/dialog';
