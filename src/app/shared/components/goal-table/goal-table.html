@@ -8,6 +8,7 @@
   @for(goal of goals(); track goal.id){
     <app-goal-card
       [goal]="goal"
+      [color]="color()"
       [isSelected]="goal.id === selectedGoalId()"
       (selected)="onGoalSelected($event)"
     ></app-goal-card>

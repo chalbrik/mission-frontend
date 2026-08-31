@@ -8,6 +8,7 @@
   @for(block of blocks(); track block.id){
     <app-block-card
       [block]="block"
+      [color]="color()"
     ></app-block-card>
   }
 </div>

@@ -1,10 +1,15 @@
 <div class="max-w-96 border p-4 rounded-xl flex flex-col gap-6"
      [style.border-color]="cardBorderColor()"
+     [style.--glow-color]="identityColor()"
+     [style.--glow-blur]="glowBlur()"
+     [style.--glow-alpha]="glowAlpha()"
+     [class.glow-frame]="isSelected()"
      (click)="selected.emit(id())"
 >
   <div class="w-full flex flex-row justify-between items-center">
     <div class="w-full flex flex-row items-center gap-2">
-      <div [class]="'h-4 w-4 bg-red-500 rounded-full'"></div>
+      <div class="h-4 w-4 rounded-full glow-dot"
+           [style.background-color]="identityColor()"></div>
       <p class="text-text-default text-p-lg font-bold">{{ title() }}</p>
     </div>
 
@@ -31,7 +36,8 @@
     <p class="text-p-base text-text-default font-normal">{{ description() }}</p>
 
     <div class="flex flex-row items-end gap-8">
-      <div class="w-16 h-16 shrink-0 border border-neutral-300 rounded-full flex items-center justify-center">
+      <div class="w-16 h-16 shrink-0 border rounded-full flex items-center justify-center glow-ring"
+           [style.border-color]="identityColor()">
         <p class="text-p-xl font-semibold text-text-default">{{ points() }}</p>
       </div>
     </div>

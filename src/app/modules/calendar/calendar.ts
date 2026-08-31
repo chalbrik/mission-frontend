@@ -8,17 +8,17 @@ import { Block } from '../../shared/services/block'
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import {MatDialog} from '@angular/material/dialog';
-import {BlockInterface} from '../../shared/interfaces/block.interface';
+import {BlockFormInterface, BlockInterface} from '../../shared/interfaces/block.interface';
 
 const EVENT_COLOR = 'var(--color-surface-brand-default)';
 
 export function blocksToEvents(blocks: BlockInterface[]): EventInput[] {
   return blocks
-    .filter((b) => !!b.scheduled_date)
+    .filter((b) => !!b.start_date)
     .map((b) => ({
       id: String(b.id),
       title: b.name,
-      start: b.scheduled_date!,
+      start: b.start_date!,
       allDay: true,
       backgroundColor: EVENT_COLOR,
       borderColor: EVENT_COLOR,
@@ -45,7 +45,6 @@ export class Calendar implements OnInit {
     height: 'auto',
     events: blocksToEvents(this.blockService.calendarBlocks()),
     eventTextColor: 'var(--color-text-default)',
-    dateClick: (arg: DateClickArg) => this.dialog.open(AddBlockModal, {data: {date: arg.dateStr}}),
     eventDrop: (arg: EventDropArg) => this.onEventDrop(arg),
   }));
 
@@ -54,9 +53,26 @@ export class Calendar implements OnInit {
   }
 
   onEventDrop(arg: EventDropArg) {
-    this.blockService.scheduleBlock(Number(arg.event.id), arg.event.startStr).subscribe({
-      error: () => arg.revert(),   // przy nieudanym PATCH event wraca na miejsce
-    });
+    const e = arg.event;
+    const newStart = e.startStr.slice(0, 10);
+    const payload: Partial<BlockFormInterface> = { start_date: newStart };
 
+    if (e.end) {
+      const endDay = e.endStr.slice(0, 10);
+      payload.end_date = e.allDay ? this.addDays(endDay, -1) : endDay;  // odwrotka ekskluzywnego końca
+    } else {
+      // FC nie ma końca (jednodniowy albo odrzucił zero-length) — jeśli blok w store MA end_date,
+      // to był ten sam dzień: przesuń razem, inaczej stary end_date < nowy start_date → 400 → revert
+      const block = this.blockService.calendarBlocks().find((b) => b.id === Number(e.id));
+      if (block?.end_date) payload.end_date = newStart;
+    }
+
+    this.blockService.rescheduleBlock(Number(e.id), payload).subscribe({ error: () => arg.revert() });
+  }
+
+  addDays(dateStr: string, n: number): string {
+    const d = new Date(dateStr + 'T00:00:00Z');
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
   }
 }

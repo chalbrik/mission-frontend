@@ -1,4 +1,4 @@
-import {Component, computed, inject, input, output, signal} from '@angular/core';
+import {Component, computed, inject, input, OnInit, output, signal} from '@angular/core';
 import { Buttons } from '../buttons/buttons';
 import { LucideCheck, LucideEllipsisVertical } from '@lucide/angular';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,6 +13,7 @@ import {AddRoleModal} from '../add-role-modal/add-role-modal';
   styleUrl: './role-card.scss',
 })
 export class RoleCard {
+  private static readonly GLOW_MAX_POINTS = 50;
 
   private readonly dialog = inject(MatDialog);
 
@@ -27,9 +28,16 @@ export class RoleCard {
 
   protected readonly error = signal<string | null>(null);
 
+  //Kolory
   protected readonly identityColor = computed(() => `var(--color-${this.color()}-500)`);
-
   protected readonly cardBorderColor = computed(() => this.isSelected() ? this.identityColor() : 'var(--color-border-default)');
+
+  //Efekty świetlne
+  protected readonly glowIntensity = computed(() =>
+    Math.min(Math.max(this.points(), 0) / RoleCard.GLOW_MAX_POINTS, 1)
+  );
+  protected readonly glowBlur = computed(() => `${4 + this.glowIntensity() * 126}px`);
+  protected readonly glowAlpha = computed(() => `${Math.round(25 + this.glowIntensity() * 75)}%`);
 
   deleteRole() {
     this.dialog.open(ConfirmationModal, {

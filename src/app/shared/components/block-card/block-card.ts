@@ -1,11 +1,12 @@
-import {Component, inject, input, OnInit, signal} from '@angular/core';
+import {Component, computed, inject, input, OnInit, signal} from '@angular/core';
 import {Buttons} from "../buttons/buttons";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {BlockInterface} from '../../interfaces/block.interface';
-import { LucideTrash2 } from '@lucide/angular';
+import {LucidePencil, LucideTrash2} from '@lucide/angular';
 import {ConfirmationModal} from '../confirmation-modal/confirmation-modal';
 import {MatDialog} from '@angular/material/dialog';
 import {Block} from '../../services/block'
+import {AddBlockModal} from '../add-block-modal/add-block-modal';
 
 @Component({
   selector: 'app-block-card',
@@ -22,6 +23,9 @@ export class BlockCard implements OnInit {
   private readonly blockService = inject(Block);
 
   block = input.required<BlockInterface>();
+  color = input<string>("");
+
+  protected readonly identityColor = computed(() => `var(--color-${this.color()}-500)`);
 
   protected readonly completed = signal(false);
 
@@ -46,4 +50,15 @@ export class BlockCard implements OnInit {
       },
     })
   }
+
+  editBlock() {
+    this.dialog.open(AddBlockModal, {
+      data: {
+        goalId: this.block().id,
+        block: this.block()
+      }
+    })
+  }
+
+  protected readonly LucidePencil = LucidePencil;
 }

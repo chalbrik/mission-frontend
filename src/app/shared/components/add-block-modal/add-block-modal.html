@@ -1,17 +1,54 @@
-<form novalidate (submit)="createBlock($event)">
-  <div class="bg-surface-background-default p-4 flex flex-col">
-    <p>Dodaj cel</p>
+<form novalidate (submit)="saveBlock($event)">
+  <div class="bg-surface-background-default p-4 flex flex-col gap-2">
+    <p>{{ isEdit ? 'Edytuj blok' : 'Dodaj blok' }}</p>
 
     <mat-form-field appearance="fill">
-      <mat-label>Cel</mat-label>
+      <mat-label>Nazwa bloku</mat-label>
       <textarea [formField]="addBlockForm.name"
                 matInput
-                placeholder="Placeholder"
                 cdkTextareaAutosize
                 cdkAutosizeMinRows="3"
                 cdkAutosizeMaxRows="8"
       ></textarea>
     </mat-form-field>
+
+    <div class="flex flex-row gap-2">
+      <mat-form-field appearance="fill" class="flex-1">
+        <mat-label>Data rozpoczęcia</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" [formField]="addBlockForm.start_date"
+               (click)="startDatePicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="flex-1">
+        <mat-label>Godzina rozpoczęcia</mat-label>
+        <input matInput [matTimepicker]="startTimePicker" [formField]="addBlockForm.start_time">
+        <mat-timepicker-toggle matIconSuffix [for]="startTimePicker"/>
+        <mat-timepicker #startTimePicker interval="30m"/>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-row gap-2">
+      <mat-form-field appearance="fill" class="flex-1">
+        <mat-label>Data zakończenia</mat-label>
+        <input matInput [matDatepicker]="endDatePicker" [formField]="addBlockForm.end_date"
+               (click)="endDatePicker.open()">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="flex-1">
+        <mat-label>Godzina zakończenia</mat-label>
+        <input matInput [matTimepicker]="endTimePicker" [formField]="addBlockForm.end_time">
+        <mat-timepicker-toggle matIconSuffix [for]="endTimePicker"/>
+        <mat-timepicker #endTimePicker interval="30m"/>
+      </mat-form-field>
+    </div>
+
+    @if (error()) {
+      <p class="text-text-error text-p-base">{{ error() }}</p>
+    }
 
     <div class="flex flex-row justify-between items-center">
       <app-buttons
@@ -32,9 +69,5 @@
         [textColor]="'text-default'"
       ></app-buttons>
     </div>
-
-
-
   </div>
 </form>
-
