@@ -1,6 +1,10 @@
 export interface BlockFormInterface {
   goal: number;
   name: string;
+  start_date: string | null;
+  start_time: string | null;
+  end_date: string | null;
+  end_time: string | null;
 }
 
 export interface BlockInterface {
@@ -8,7 +12,10 @@ export interface BlockInterface {
   name: string;
   difficulty: number;
   completed: boolean;
-  scheduled_date?: string;
+  start_date: string | null;
+  start_time: string | null;
+  end_date: string | null;
+  end_time: string | null;
   created_at: string;
   goal: number;
 }

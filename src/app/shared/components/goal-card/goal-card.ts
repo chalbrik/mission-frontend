@@ -1,4 +1,4 @@
-import {Component, inject, input, output, signal} from '@angular/core';
+import {Component, computed, inject, input, output, signal} from '@angular/core';
 import {GoalInterface} from '../../interfaces/goal.interface';
 import {Buttons} from '../buttons/buttons';
 import {LucideTrash2, LucideX} from '@lucide/angular';
@@ -23,9 +23,12 @@ export class GoalCard {
   private readonly dialog = inject(MatDialog);
 
   goal = input.required<GoalInterface>();
+  color = input<string>('');
   isSelected = input<boolean>(false);
 
   readonly selected = output<number>();
+
+  protected readonly identityColor = computed(() => `var(--color-${this.color()}-500)`);
 
   protected readonly completed = signal(false);
 

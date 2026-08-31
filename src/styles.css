@@ -349,3 +349,10 @@
   --text-p-xxsm--line-height: 8px;
 
 }
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

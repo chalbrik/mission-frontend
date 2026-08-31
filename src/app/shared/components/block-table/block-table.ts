@@ -35,6 +35,10 @@ export class BlockTable {
   }
 
   openAddBlock() {
-    this.dialog.open(AddBlockModal, { data: { goalId: this.goalId() } });
+    this.dialog.open(AddBlockModal, { data:
+        {
+          goalId: this.goalId(),
+        }
+    });
   }
 }
