@@ -7,6 +7,7 @@ import {GoalTable} from '../../shared/components/goal-table/goal-table';
 import {AddRoleModal} from '../../shared/components/add-role-modal/add-role-modal';
 import {MatDialog} from '@angular/material/dialog';
 import {BlockTable} from '../../shared/components/block-table/block-table';
+import {CounterCard} from '../../shared/components/counter-card/counter-card';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,11 +15,13 @@ import {BlockTable} from '../../shared/components/block-table/block-table';
     RoleCard,
     AddTab,
     GoalTable,
-    BlockTable
+    BlockTable,
+    CounterCard
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
-  standalone: true
+  standalone: true,
+  host: { class: 'flex-1 min-w-0' },
 })
 export class Dashboard implements OnInit {
   private readonly roleService = inject(Role);
