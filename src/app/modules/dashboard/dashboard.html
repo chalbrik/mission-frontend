@@ -1,23 +1,23 @@
+<div class="flex flex-col gap-4 p-4 w-full">
+  <app-counter-card></app-counter-card>
+
 <div class="flex flex-row gap-4 p-4 h-full">
     <div class="flex flex-col gap-4 h-full">
       <app-add-tab
         [title]="'Role'"
         (add)="openAddRole()"
       ></app-add-tab>
-      <div class="flex flex-col gap-4 h-full overflow-auto scrollbar-hide">
-        @for(role of roles(); track role.id){
-          <app-role-card
-            [id]="role.id"
-            [title]="role.name"
-            [description]="role.note"
-            [points]="role.points"
-            [isSelected]="role.id === selectedRoleId()"
-            [color]="role.color"
-            (selected)="onRoleSelected($event)"
-          ></app-role-card>
-        }
-      </div>
-
+      @for(role of roles(); track role.id){
+        <app-role-card
+          [id]="role.id"
+          [title]="role.name"
+          [description]="role.note"
+          [points]="role.points"
+          [isSelected]="role.id === selectedRoleId()"
+          [color]="role.color"
+          (selected)="onRoleSelected($event)"
+        ></app-role-card>
+      }
     </div>
 
     @if(selectedRoleId() !== 0){
@@ -35,4 +35,5 @@
     }
 
   </div>
+</div>
 
