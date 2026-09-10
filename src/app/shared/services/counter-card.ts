@@ -30,7 +30,7 @@ export class CounterCard {
   }
 
   createCounterCard(counterCard: CounterCardFormInterface): Observable<CounterCardInterface> {
-    return this.http.post<GoalInterface>(`${this.apiUrl}counter-cards/`, counterCard).pipe(
+    return this.http.post<CounterCardInterface>(`${this.apiUrl}counter-cards/`, counterCard).pipe(
       tap((created) => this._counterCards.update((list) => [...list, created])),
     );
   }
@@ -48,15 +48,20 @@ export class CounterCard {
   }
 
   markSuccess(id: number): Observable<CounterCardInterface> {
-    return this.http.patch<CounterCardInterface>(`${this.apiUrl}counter-cards/${id}/success`, counterCard).pipe(
-      tap((created) => this._counterCards.update((list) => [...list, created])),
+    return this.http.post<CounterCardInterface>(`${this.apiUrl}counter-cards/${id}/success/`, {}).pipe(
+      tap((updated) => this._counterCards.update((list) =>
+        list.map((c) => (c.id === updated.id ? updated : c)),
+      )),
     );
   }
 
   reset(id: number): Observable<CounterCardInterface> {
-    return this.http.patchC<CounterCardInterface>(`${this.apiUrl}counter-cards/${id}/reset`, counterCard).pipe(
-      tap((created) => this._counterCards.update((list) => [...list, created])),
+    return this.http.post<CounterCardInterface>(`${this.apiUrl}counter-cards/${id}/reset/`, {}).pipe(
+      tap((updated) => this._counterCards.update((list) =>
+        list.map((c) => (c.id === updated.id ? updated : c)),
+      )),
     );
   }
 
 }
+
