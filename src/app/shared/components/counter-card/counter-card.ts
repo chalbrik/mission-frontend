@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject, input} from '@angular/core';
 import {Buttons} from "../buttons/buttons";
 import {LucideCrown, LucideEyeClosed} from '@lucide/angular';
+import {CounterCardService} from '../../services/counter-card';
 
 @Component({
   selector: 'app-counter-card',
@@ -14,6 +15,34 @@ export class CounterCard {
   protected readonly LucideCrown = LucideCrown;
   protected readonly LucideEyeClosed = LucideEyeClosed;
 
+  readonly id = input<number>(0);
+  readonly title = input<string>('');
+  readonly streak = input<number>(0);
+  readonly record = input<number>(0);
+
+  private counterCardService = inject(CounterCardService);
+
+  markSuccess(){
+    this.counterCardService.markSuccess(this.id()).subscribe({
+      next: ()=> {
+      },
+      error: ()=> {
+        console.error('Nie udało się odłożyć wartości');
+      },
+    });
+
+  }
+
+  reset(){
+    this.counterCardService.reset(this.id()).subscribe({
+      next: ()=> {
+        console.log('poszlo')
+      },
+      error: ()=> {
+        console.error('Nie udało się zresetować wartości');
+      },
+    });
+  }
 
 
 }

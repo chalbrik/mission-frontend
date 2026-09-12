@@ -8,6 +8,9 @@ import {AddRoleModal} from '../../shared/components/add-role-modal/add-role-moda
 import {MatDialog} from '@angular/material/dialog';
 import {BlockTable} from '../../shared/components/block-table/block-table';
 import {CounterCard} from '../../shared/components/counter-card/counter-card';
+import {AddCounterCardModal} from '../../shared/components/add-counter-card-modal/add-counter-card-modal';
+import {CounterCardService} from '../../shared/services/counter-card';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +28,7 @@ import {CounterCard} from '../../shared/components/counter-card/counter-card';
 })
 export class Dashboard implements OnInit {
   private readonly roleService = inject(Role);
+  private readonly counterCardService = inject(CounterCardService);
   private readonly dialog = inject(MatDialog);
 
   readonly roles = this.roleService.roles;
@@ -37,12 +41,21 @@ export class Dashboard implements OnInit {
     this.roles().find((r) => r.id === this.selectedRoleId())?.color ?? ''
   );
 
+
+  readonly counterCards = this.counterCardService.counterCards;
+  readonly counterCardsError = this.counterCardService.error;
+
   ngOnInit() {
     this.roleService.loadRoles();
+    this.counterCardService.loadCounterCards();
   }
 
   openAddRole() {
     this.dialog.open(AddRoleModal);
+  }
+
+  openAddCounterCard() {
+    this.dialog.open(AddCounterCardModal);
   }
 
   onRoleSelected(id: number) {

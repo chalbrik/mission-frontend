@@ -1,0 +1,31 @@
+<form novalidate (submit)="createCounterCard($event)">
+  <h2 mat-dialog-title>Dodaj serię</h2>
+  <mat-dialog-content>
+    <div class="flex flex-col">
+      <mat-form-field appearance="fill">
+        <mat-label>Nazwa</mat-label>
+        <input [formField]="counterCardForm.title"  matInput>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <app-buttons
+      [type]="'outline'"
+      [iconLeft]="LucideX"
+      [size]="'small'"
+      [rounded]="'big'"
+      [textColor]="'text-default'"
+      (buttonClick)="dialogRef.close()"
+    ></app-buttons>
+
+    <app-buttons
+      [type]="'outline'"
+      [buttonType]="'submit'"
+      [iconLeft]="LucideCheck"
+      [size]="'small'"
+      [rounded]="'big'"
+      [textColor]="'text-default'"
+    ></app-buttons>
+  </mat-dialog-actions>
+</form>
+

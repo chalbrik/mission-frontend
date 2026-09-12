@@ -1,4 +1,5 @@
-<div class="max-w-96 border p-4 rounded-xl flex flex-col gap-6"
+<div class="max-w-96 p-4 rounded-xl flex flex-col gap-6 bg-surface-background-default"
+     [class.border]="isSelected()"
      [style.border-color]="cardBorderColor()"
      [style.--glow-color]="identityColor()"
      [style.--glow-blur]="glowBlur()"

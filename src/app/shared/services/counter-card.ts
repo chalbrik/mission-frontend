@@ -2,21 +2,18 @@ import {inject, Service, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {CounterCardInterface, CounterCardFormInterface} from '../interfaces/counter-card.interface';
-import {RoleCreatePayload, RoleFormInterface, RoleInterface} from '../interfaces/role.interface';
 import {Observable, tap} from 'rxjs';
-import {getIdentityColorPool, pickIdentityColor} from '../utils/role-colors';
-
 
 
 @Service()
-export class CounterCard {
+export class CounterCardService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = environment.apiUrl;
 
   private readonly _counterCards = signal<CounterCardInterface[]>([]);
   private readonly _error = signal<string | null>(null);
 
-  readonly counterCards = this._counterCards.asReadonly();
+  readonly counterCards  = this._counterCards.asReadonly();
   readonly error = this._error.asReadonly();
 
   loadCounterCards(): void {
@@ -35,7 +32,7 @@ export class CounterCard {
     );
   }
 
-  updateCounterCard(id: number, counterCard: CounterCardFormInterface): Observable<CounterCardInterface> {
+  editCounterCard(id: number, counterCard: CounterCardFormInterface): Observable<CounterCardInterface> {
     return this.http.patch<CounterCardInterface>(`${this.apiUrl}counter-cards/${id}/`, counterCard).pipe(
       tap((updated) => this._counterCards.update((list) => [...list, updated])),
     );
