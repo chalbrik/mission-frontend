@@ -1,13 +1,17 @@
 import {Component, inject, input} from '@angular/core';
 import {Buttons} from "../buttons/buttons";
-import {LucideCrown, LucideEyeClosed} from '@lucide/angular';
+import {LucideCrown, LucideEllipsisVertical, LucideEyeClosed} from '@lucide/angular';
 import {CounterCardService} from '../../services/counter-card';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-counter-card',
-    imports: [
-        Buttons
-    ],
+  imports: [
+    Buttons,
+    MatMenu,
+    MatMenuItem,
+    MatMenuTrigger
+  ],
   templateUrl: './counter-card.html',
   styleUrl: './counter-card.scss',
 })
@@ -44,5 +48,14 @@ export class CounterCard {
     });
   }
 
+  editCounterCard(){
 
+  }
+
+  deleteCounterCard(){
+
+  }
+
+
+  protected readonly LucideEllipsisVertical = LucideEllipsisVertical;
 }

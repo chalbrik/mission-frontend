@@ -1,5 +1,7 @@
-<div class="flex flex-row justify-between items-center w-full bg-surface-background-default p-5 rounded-2xl">
-  <p class="text-h5 font-semibold text-text-default"> {{ title() }} </p>
+<div class="flex flex-row justify-between items-start w-full h-full bg-surface-background-default p-5 rounded-2xl">
+  <div class="h-full flex flex-row items-center">
+    <p class="text-h5 font-semibold text-text-default"> {{ title() }} </p>
+  </div>
 
   <div class="flex flex-row items-center gap-5">
     <app-buttons
@@ -26,10 +28,25 @@
 
   </div>
 
-  <div>
+  <div class="h-full flex flex-col items-center justify-center">
     <p class="text-p-md font-semibold text-text-subtle"> REKORD </p>
     <p class="text-p-md font-semibold text-text-subtle"> {{ record() }} dni </p>
   </div>
+
+  <app-buttons
+    (click)="$event.stopPropagation()"
+    [matMenuTriggerFor]="roleMenu"
+    [type]="'outline'"
+    [iconLeft]="LucideEllipsisVertical"
+    [textColor]="'neutral-300'"
+    [size]="'small'"
+    [rounded]="'big'"
+  />
+
+  <mat-menu #roleMenu="matMenu">
+    <button mat-menu-item (click)="editCounterCard()">Edytuj</button>
+    <button mat-menu-item (click)="deleteCounterCard()">Usuń</button>
+  </mat-menu>
 
 
 </div>
